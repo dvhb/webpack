@@ -1,5 +1,5 @@
 {
-  "name": "dvhb-webpack",
+  "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
   "author": {
