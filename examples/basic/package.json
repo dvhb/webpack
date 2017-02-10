@@ -1,0 +1,28 @@
+{
+  "name": "webpack-starter-kit-basic-example",
+  "description": "Webpack Starter kit basic example",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dvhbru/webpack.git",
+  "author": {
+    "name": "Aleksey Subbotenko",
+    "url": "https://dvhb.ru/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dvhbru/webpack.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "@dvhb/webpack": "^0.0.1",
+    "webpack": "^1.14.0"
+  },
+  "scripts": {
+    "webpack-server": "dvhb-webpack server",
+    "webpack-build": "dvhb-webpack build"
+  }
+}
