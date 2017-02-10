@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "scripts/index.js",
   "bin": {
-    "@dvhb/webpack": "bin/webpack.js"
+    "dvhb-webpack": "bin/webpack.js"
   },
   "files": [
     "bin",
