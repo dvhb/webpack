@@ -1,8 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    title: 'Dvhb Webpack Starter Kit',
-    defaultExample: true,
+    title: 'Webpack Starter kit basic example',
 
     extendWebpackConfig(webpackConfig) {
         const dir = path.resolve(__dirname, 'lib');

@@ -51,15 +51,13 @@ module.exports = function (config, env) {
                 {
                     test: /\.css$/,
                     include: config.sourceDir,
-                    loader: 'style!raw!postcss!stylus',
-                    loader: 'style!css?modules&importLoaders=1&localIdentName=ReactStyleguidist-[name]__[local]',
+                    loader: 'style!css',
                 },
             ],
         },
     };
 
     const loaderModulesDirectories = [
-        path.resolve(__dirname, '../loaders'),
         nodeModulesDir,
         'node_modules',
     ];
@@ -80,17 +78,13 @@ module.exports = function (config, env) {
             plugins: [
                 new webpack.LoaderOptionsPlugin({
                     minimize: isProd,
-                    debug: !isProd,
-                    options: {
-                        styleguidist: config,
-                    },
+                    debug: !isProd
                 }),
             ],
         });
     }
     else {
         webpackConfig = merge(webpackConfig, {
-            styleguidist: config,
             resolve: {
                 extensions: ['', '.js', '.jsx', '.json'],
                 root: config.sourceDir,
@@ -136,7 +130,7 @@ module.exports = function (config, env) {
     else {
         webpackConfig = merge(webpackConfig, {
             entry: [
-                'webpack-hot-middleware/client',
+                'webpack-hot-middleware/client?reload=true',
                 entryScript,
             ],
             cache: true,
@@ -147,6 +141,7 @@ module.exports = function (config, env) {
             },
 
             plugins: [
+                new webpack.optimize.OccurenceOrderPlugin(),
                 new webpack.HotModuleReplacementPlugin(),
                 new webpack.NoErrorsPlugin(),
             ],

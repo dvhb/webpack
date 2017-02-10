@@ -58,7 +58,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bin/webpack.js server --config examples/basic/dvhb.config.js",
+    "start": "bin/webpack.js server --config examples/basic/dvhb.config.js --verbose",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "lint-staged": "lint-staged",
     "build": "bin/webpack.js build --config examples/basic/dvhb.config.js",
