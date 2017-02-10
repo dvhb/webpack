@@ -41,7 +41,7 @@ switch (argv._[0]) {
 }
 
 function commandBuild() {
-	console.log('Building style guide...');
+	console.log('Building project...');
 
 	const build = require('../scripts/build');
 	build(config, err => {
@@ -50,7 +50,7 @@ function commandBuild() {
 			process.exit(1);
 		}
 		else {
-			console.log('Dvhb Webpack project published to:');
+			console.log('Project published to:');
 			console.log(chalk.underline(config.distDir));
 		}
 	});
@@ -78,7 +78,7 @@ function commandServer() {
 			console.log(err);
 		}
 		else {
-			console.log('Style guide server started at:');
+			console.log('Local server started at:');
 			console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
 			console.log();
 		}
@@ -89,13 +89,13 @@ function commandHelp() {
 	console.log([
 		chalk.underline('Usage'),
 		'',
-		'    ' + chalk.bold('styleguidist') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
+		'    ' + chalk.bold('@dvhb/webpack') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
 		'',
 		chalk.underline('Commands'),
 		'',
 		'    ' + chalk.cyan('build') + '           Build style guide',
 		'    ' + chalk.cyan('server') + '          Run development server',
-		'    ' + chalk.cyan('help') + '            Display React DvhbWebpack help',
+		'    ' + chalk.cyan('help') + '            Display help',
 		'',
 		chalk.underline('Options'),
 		'',

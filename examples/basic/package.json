@@ -22,7 +22,7 @@
     "webpack": "^1.14.0"
   },
   "scripts": {
-    "webpack-server": "dvhb-webpack server",
-    "webpack-build": "dvhb-webpack build"
+    "start": "@dvhb/webpack server",
+    "build": "@dvhb/webpack build"
   }
 }
