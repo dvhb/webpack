@@ -6,7 +6,6 @@ module.exports = {
     extendWebpackConfig(webpackConfig) {
         const dir = path.resolve(__dirname, 'lib');
         webpackConfig.module.loaders.push(
-
             {
                 test: /\.css$/,
                 include: dir,
