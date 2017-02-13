@@ -38,7 +38,6 @@
     "lodash": "^4.17.4",
     "minimist": "1.2.0",
     "prettyjson": "^1.2.1",
-    "pug": "^2.0.0-beta",
     "pug-static": "^1.0.1",
     "semver-utils": "^1.1.1",
     "webpack-dev-middleware": "1.8.4",
