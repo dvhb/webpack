@@ -35,11 +35,6 @@ module.exports = function (config, env) {
             moduleExtensions: ['-loader', '.loader'],
         },
         plugins: [
-            new HtmlWebpackPlugin({
-                title: config.title,
-                template: config.template,
-                inject: true,
-            }),
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(env),
@@ -56,6 +51,15 @@ module.exports = function (config, env) {
             ],
         },
     };
+
+    if (config.template) {
+        webpackConfig.plugins.push(
+            new HtmlWebpackPlugin({
+                title: config.title,
+                template: config.template,
+                inject: true,
+            }));
+    }
 
     const loaderModulesDirectories = [
         nodeModulesDir,

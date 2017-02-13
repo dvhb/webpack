@@ -77,11 +77,14 @@ function getConfig(options) {
         verbose: !!options.verbose,
         sourceDir: path.resolve(configDir, config.sourceDir),
         distDir: path.resolve(configDir, config.distDir),
-        template: path.resolve(configDir, config.template),
         viewsDir: path.resolve(configDir, config.viewsDir),
         configDir,
         assetsDir
     });
+
+    if (config.template){
+        config.template = path.resolve(configDir, config.template)
+    }
 
     if (config.verbose) {
         console.log();

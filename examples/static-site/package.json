@@ -1,0 +1,25 @@
+{
+  "name": "webpack-starter-kit-static-site-example",
+  "description": "Webpack Starter kit static-site example",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dvhbru/webpack.git",
+  "author": "team@dvhb.ru",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dvhbru/webpack.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "@dvhb/webpack": "0.0.4-beta.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "webpack": "^1.14.0"
+  },
+  "scripts": {
+    "start": "dvhb-webpack server",
+    "build": "dvhb-webpack build"
+  }
+}
