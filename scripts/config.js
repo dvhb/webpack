@@ -20,6 +20,7 @@ const DEFAULT_CONFIG = {
     sourceDir: 'src',
     assetsDir: null,
     distDir: 'dist',
+    viewsDir: 'src/views',
     template: 'src/index.html',
     serverHost: 'localhost',
     serverPort: 3000,
@@ -77,6 +78,7 @@ function getConfig(options) {
         sourceDir: path.resolve(configDir, config.sourceDir),
         distDir: path.resolve(configDir, config.distDir),
         template: path.resolve(configDir, config.template),
+        viewsDir: path.resolve(configDir, config.viewsDir),
         configDir,
         assetsDir
     });

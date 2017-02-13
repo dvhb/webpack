@@ -3,6 +3,7 @@
 const express = require('express');
 const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
+const pugStatic = require('pug-static');
 
 module.exports = function createServer(config, env) {
     const webpackConfig = makeWebpackConfig(config, env);
@@ -20,6 +21,11 @@ module.exports = function createServer(config, env) {
     // configure static assets
     if (config.assetsDir) {
         app.use(express.static(config.assetsDir));
+    }
+
+    // configure static template files, use template engine pug
+    if (config.viewsDir) {
+        app.use(pugStatic(config.viewsDir));
     }
 
     // user defined customizations
