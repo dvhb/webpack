@@ -155,8 +155,8 @@ module.exports = function (config, env) {
         });
     }
 
-    if (config.updateWebpackConfig) {
-        webpackConfig = config.updateWebpackConfig(webpackConfig, env);
+    if (config.extendWebpackConfig) {
+        webpackConfig = config.extendWebpackConfig(webpackConfig, env);
         validateWebpackConfig(webpackConfig);
     }
 
