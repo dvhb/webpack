@@ -13,11 +13,13 @@
     "node": ">=4"
   },
   "dependencies": {
-    "@dvhb/webpack": "0.0.4-beta.1",
+    "@dvhb/webpack": "0.1.0-beta.2",
     "webpack": "^1.14.0"
   },
   "scripts": {
-    "start": "dvhb-webpack server",
+    "prestart": "npm run build",
+    "start": "dvhb-webpack server --env=production",
+    "dev": "dvhb-webpack server",
     "build": "dvhb-webpack build"
   }
 }

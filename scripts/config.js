@@ -74,6 +74,7 @@ function getConfig(options) {
 
     config = merge({}, DEFAULT_CONFIG, config);
     config = merge({}, config, {
+        env: options.env || 'development',
         verbose: !!options.verbose,
         sourceDir: path.resolve(configDir, config.sourceDir),
         distDir: path.resolve(configDir, config.distDir),

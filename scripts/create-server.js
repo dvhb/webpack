@@ -10,13 +10,15 @@ module.exports = function createServer(config, env) {
     const compiler = webpack(webpackConfig);
     const app = express();
 
-    // register webpack middlewares
-    app.use(require('webpack-dev-middleware')(compiler, {
-        noInfo: true,
-        stats: webpackConfig.stats || {},
-    }));
+    if (env === 'development') {
+        // register webpack middlewares
+        app.use(require('webpack-dev-middleware')(compiler, {
+            noInfo: true,
+            stats: webpackConfig.stats || {},
+        }));
 
-    app.use(require('webpack-hot-middleware')(compiler));
+        app.use(require('webpack-hot-middleware')(compiler));
+    }
 
     // configure static assets
     if (config.assetsDir) {

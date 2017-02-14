@@ -3,6 +3,10 @@ const path = require('path');
 module.exports = {
     template: null,
 
+    assetsDir: 'assets',
+
+    distDir: 'assets',
+
     extendWebpackConfig(webpackConfig) {
         const dir = path.resolve(__dirname, 'src');
 
