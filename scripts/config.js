@@ -74,11 +74,7 @@ function getConfig(options) {
     if (Array.isArray(config.assetsDir)) {
         assetsDir = [];
         config.assetsDir.forEach(function (dir) {
-            dir = path.resolve(configDir, dir);
-            if (!utils.isDirectoryExists(dir)) {
-                throw new DvhbWebpackError('DvhbWebpack: directory not found in assetsDir array of directories: ' + assetsDir);
-            }
-            assetsDir.push(dir);
+            assetsDir.push(path.resolve(configDir, dir));
         });
     }
 
