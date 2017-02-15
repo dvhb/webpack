@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "0.1.0-beta.4",
+  "version": "0.1.0-beta.5",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -41,6 +41,7 @@
     "prettyjson": "^1.2.1",
     "pug-static": "^1.0.1",
     "semver-utils": "^1.1.1",
+    "webpack-cleanup-plugin": "^0.4.2",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.1",
     "webpack-manifest-plugin": "^1.1.0",

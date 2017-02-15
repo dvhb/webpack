@@ -23,8 +23,8 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   HTML file to use as the template for application.
 
 * **`assetsDir`**<br>
-  Type: `String`, optional<br>
-  Your application static assets folder, will be accessible as `/` in the dev-server.
+  Type: `String` or `Array`, optional<br>
+  Your application static assets folder, will be accessible as `/` in the dev-server or prod-server.
 
 * **`serverHost`**<br>
   Type: `String`, default: `localhost`<br>

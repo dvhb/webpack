@@ -64,12 +64,22 @@ function getConfig(options) {
 
     validateDependencies(configDir);
 
-    let assetsDir = config.assetsDir;
-    if (assetsDir) {
-        assetsDir = path.resolve(configDir, assetsDir);
+    let assetsDir = null;
+    if (typeof config.assetsDir === 'string') {
+        assetsDir = path.resolve(configDir, config.assetsDir);
         if (!utils.isDirectoryExists(assetsDir)) {
-            throw new DvhbWebpackError('DvhbWebpack: "assetsRoot" directory not found: ' + assetsDir);
+            throw new DvhbWebpackError('DvhbWebpack: "assetsDir" directory not found: ' + assetsDir);
         }
+    }
+    if (Array.isArray(config.assetsDir)) {
+        assetsDir = [];
+        config.assetsDir.forEach(function (dir) {
+            dir = path.resolve(configDir, dir);
+            if (!utils.isDirectoryExists(dir)) {
+                throw new DvhbWebpackError('DvhbWebpack: directory not found in assetsDir array of directories: ' + assetsDir);
+            }
+            assetsDir.push(dir);
+        });
     }
 
     config = merge({}, DEFAULT_CONFIG, config);
@@ -79,11 +89,11 @@ function getConfig(options) {
         sourceDir: path.resolve(configDir, config.sourceDir),
         distDir: path.resolve(configDir, config.distDir),
         viewsDir: path.resolve(configDir, config.viewsDir),
+        assetsDir: assetsDir,
         configDir,
-        assetsDir
     });
 
-    if (config.template){
+    if (config.template) {
         config.template = path.resolve(configDir, config.template)
     }
 

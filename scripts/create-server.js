@@ -22,7 +22,14 @@ module.exports = function createServer(config, env) {
 
     // configure static assets
     if (config.assetsDir) {
-        app.use(express.static(config.assetsDir));
+        if (typeof config.assetsDir === 'string') {
+            app.use(express.static(config.assetsDir));
+        }
+        if (Array.isArray(config.assetsDir)) {
+            config.assetsDir.forEach(function (path) {
+                app.use(express.static(path));
+            });
+        }
     }
 
     // configure static template files, use template engine pug

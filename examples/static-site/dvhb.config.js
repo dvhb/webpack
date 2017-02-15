@@ -2,8 +2,12 @@ const path = require('path');
 
 module.exports = {
     template: null,
-    assetsDir: 'assets',
-    distDir: 'assets/dist',
+
+    assetsDir: [
+        'assets', // directory for static images/fonts/video
+        'dist'    // webpack output directory
+    ],
+
     extendWebpackConfig(webpackConfig) {
         const dir = path.resolve(__dirname, 'src');
 

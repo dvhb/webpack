@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
@@ -132,6 +133,9 @@ module.exports = function (config, env) {
             devtool: false,
             cache: false,
             plugins: [
+                new WebpackCleanupPlugin({
+                    quiet: true,
+                }),
                 new webpack.optimize.DedupePlugin(),
                 new webpack.optimize.UglifyJsPlugin({
                     compress: {
