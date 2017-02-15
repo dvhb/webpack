@@ -77,7 +77,7 @@ function commandServer() {
             console.log(err);
         }
         else {
-            console.log('Local server started at:');
+            console.log(`Server started at ${chalk.bold(config.env)} mode:`);
             console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
             console.log();
         }

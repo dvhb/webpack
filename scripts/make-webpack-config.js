@@ -5,6 +5,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
@@ -28,8 +31,7 @@ module.exports = function (config, env) {
     let webpackConfig = {
         output: {
             path: config.distDir,
-            filename: 'build/bundle.js',
-            chunkFilename: 'build/[name].js',
+            filename: '[name].js'
         },
         resolveLoader: {
             moduleExtensions: ['-loader', '.loader'],
@@ -39,6 +41,18 @@ module.exports = function (config, env) {
                 'process.env': {
                     NODE_ENV: JSON.stringify(env),
                 },
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                minChunks: function (module) {
+                    return /node_modules/.test(module.resource);
+                }
+            }),
+            new WebpackMd5Hash(),
+            new ManifestPlugin(),
+            new ChunkManifestPlugin({
+                filename: "chunk-manifest.json",
+                manifestVariable: "webpackManifest"
             }),
         ],
         module: {
@@ -108,13 +122,16 @@ module.exports = function (config, env) {
 
     if (isProd) {
         webpackConfig = merge(webpackConfig, {
+            output: {
+                filename: '[name].[chunkhash].js',
+                chunkFilename: '[name].[chunkhash].js'
+            },
             entry: [
                 entryScript,
             ],
             devtool: false,
             cache: false,
             plugins: [
-                new webpack.optimize.OccurrenceOrderPlugin(),
                 new webpack.optimize.DedupePlugin(),
                 new webpack.optimize.UglifyJsPlugin({
                     compress: {
@@ -143,7 +160,6 @@ module.exports = function (config, env) {
                 colors: true,
                 reasons: true,
             },
-
             plugins: [
                 new webpack.optimize.OccurenceOrderPlugin(),
                 new webpack.HotModuleReplacementPlugin(),

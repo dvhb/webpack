@@ -1,7 +1,7 @@
-html
-    head
-        title category
-        script(src="/build/bundle.js")
+extends ../_partials/layout
 
-    body
-        h1 category
+block vars
+    - var title = 'Category'
+
+block content
+    h1 Category

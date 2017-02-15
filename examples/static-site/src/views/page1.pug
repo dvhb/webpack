@@ -1,7 +1,7 @@
-html
-    head
-        title Page 1
-        script(src="/build/bundle.js")
+extends _partials/layout
 
-    body
-        h1 Hello Page 1
+block vars
+    - var title = 'Page1'
+
+block content
+    h1 Page 1

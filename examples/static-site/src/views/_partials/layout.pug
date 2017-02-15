@@ -1,0 +1,14 @@
+html
+
+    block vars
+
+    head
+        title #{title}
+
+    body
+        include header
+
+        block content
+
+        script(src="/dist/vendor.js")
+        script(src="/dist/main.js")
