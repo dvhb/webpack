@@ -16,6 +16,10 @@ const webpackVersion = semverUtils.parseRange(require('webpack/package.json').ve
 const isWebpack2 = webpackVersion === '2';
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
+// experimental
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const autoprefixer = require('autoprefixer');
+
 function validateWebpackConfig(webpackConfig) {
     webpackConfig.module.loaders.forEach(loader => {
         if (!loader.include && !loader.exclude) {
@@ -57,14 +61,13 @@ module.exports = function (config, env) {
             }),
         ],
         module: {
-            loaders: [
-                {
-                    test: /\.css$/,
-                    include: config.sourceDir,
-                    loader: 'style!css',
-                },
-            ],
+            loaders: [],
         },
+        postcss: [
+            autoprefixer({
+                browsers: ['last 6 versions']
+            })
+        ],
     };
 
     if (config.template) {
@@ -146,9 +149,21 @@ module.exports = function (config, env) {
                     },
                     mangle: false,
                 }),
+                new ExtractTextPlugin('[name].[contenthash].css')
             ],
             module: {
-                loaders: [],
+                loaders: [
+                    {
+                        test: /\.css$/,
+                        include: config.sourceDir,
+                        loader: ExtractTextPlugin.extract("style", "raw!csso?-restructure!postcss")
+                    },
+                    {
+                        test: /\.styl$/,
+                        include: config.sourceDir,
+                        loader: ExtractTextPlugin.extract("style", "raw!csso?-restructure!postcss!stylus")
+                    },
+                ],
             },
         });
     }
@@ -170,7 +185,18 @@ module.exports = function (config, env) {
                 new webpack.NoErrorsPlugin(),
             ],
             module: {
-                loaders: [],
+                loaders: [
+                    {
+                        test: /\.styl$/,
+                        include: config.sourceDir,
+                        loader: 'style!raw!postcss!stylus'
+                    },
+                    {
+                        test: /\.css$/,
+                        include: config.sourceDir,
+                        loader: 'style!raw'
+                    }
+                ],
             },
         });
     }
