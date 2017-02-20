@@ -5,6 +5,9 @@ html
     head
         title #{title}
 
+        if env == 'production'
+            link(rel="stylesheet", href="/main.css")
+
     body
         include header
 
