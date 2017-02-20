@@ -42,5 +42,12 @@ module.exports = function createServer(config, env) {
         config.configureServer(app, env);
     }
 
+
+    /**
+     * Local variables in express app
+     * @see http://expressjs.com/en/api.html#app.locals
+     */
+    app.locals.env = env;
+
     return {app, compiler};
 };
