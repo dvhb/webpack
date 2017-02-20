@@ -149,7 +149,11 @@ module.exports = function (config, env) {
                     },
                     mangle: false,
                 }),
-                new ExtractTextPlugin('[name].[contenthash].css')
+
+                /**
+                 * @todo replace with `'[name].[contenthash].css'` when add manifest.json into pug templates
+                 */
+                new ExtractTextPlugin('[name].css')
             ],
             module: {
                 loaders: [
