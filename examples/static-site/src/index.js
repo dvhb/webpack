@@ -6,7 +6,7 @@ import './components/btn';
 import './components/icon';
 
 // experiment with stylus loaders
-require('./styles/styles.styl');
+import './styles/'
 
 //use it for enable HRM
 // if (module.hot) {
