@@ -34,6 +34,11 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Type: `Number`, default: `3000`<br>
   Dev server port.
 
+* **`eslintrc`**<br>
+  Type: `String`, default: `.eslintrc`<br>
+  Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).<br>
+  You can use your own eslint config if exists `<project_dir>/.eslintrc`
+
 * **`extendWebpackConfig`**<br>
   Type: `Function`, optional<br>
   Function that allows you to extend Webpack config:

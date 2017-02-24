@@ -9,6 +9,8 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
@@ -16,14 +18,10 @@ const webpackVersion = semverUtils.parseRange(require('webpack/package.json').ve
 const isWebpack2 = webpackVersion === '2';
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
-// experimental
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const autoprefixer = require('autoprefixer');
-
 function validateWebpackConfig(webpackConfig) {
     webpackConfig.module.loaders.forEach(loader => {
         if (!loader.include && !loader.exclude) {
-            throw Error('DvhbWebpack: "include" option is missing for ' + loader.test + ' Webpack loader.');
+            throw Error(`DvhbWebpack: "include" option is missing for "${loader.test}" Webpack loader.`);
         }
     });
 }
@@ -56,8 +54,8 @@ module.exports = function (config, env) {
             new WebpackMd5Hash(),
             new ManifestPlugin(),
             new ChunkManifestPlugin({
-                filename: "chunk-manifest.json",
-                manifestVariable: "webpackManifest"
+                filename: 'chunk-manifest.json',
+                manifestVariable: 'webpackManifest'
             }),
         ],
         module: {
@@ -65,7 +63,7 @@ module.exports = function (config, env) {
                 {
                     test: /\.js?$/,
                     include: config.sourceDir,
-                    loader: 'babel',
+                    loaders: ['babel', 'eslint'],
                 },
                 {
                     test: /\.pug/,
@@ -84,6 +82,9 @@ module.exports = function (config, env) {
                 browsers: ['last 6 versions']
             })
         ],
+        eslint: {
+            configFile: config.eslintrc
+        }
     };
 
     if (config.template) {
@@ -176,12 +177,12 @@ module.exports = function (config, env) {
                     {
                         test: /\.css$/,
                         include: config.sourceDir,
-                        loader: ExtractTextPlugin.extract("style", "raw!csso?-restructure!postcss")
+                        loader: ExtractTextPlugin.extract('style', 'raw!csso?-restructure!postcss')
                     },
                     {
                         test: /\.styl$/,
                         include: config.sourceDir,
-                        loader: ExtractTextPlugin.extract("style", "raw!csso?-restructure!postcss!stylus")
+                        loader: ExtractTextPlugin.extract('style', 'raw!csso?-restructure!postcss!stylus')
                     },
                 ],
             },

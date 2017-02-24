@@ -25,7 +25,8 @@ const DEFAULT_CONFIG = {
     serverHost: 'localhost',
     serverPort: 3000,
     verbose: false,
-    extendWebpackConfig: null
+    extendWebpackConfig: null,
+    eslintrc: '.eslintrc'
 };
 const DEPENDENCIES = [
     {
@@ -78,6 +79,7 @@ function getConfig(options) {
         });
     }
 
+
     config = merge({}, DEFAULT_CONFIG, config);
     config = merge({}, config, {
         env: options.env || 'development',
@@ -88,6 +90,12 @@ function getConfig(options) {
         assetsDir: assetsDir,
         configDir,
     });
+
+    if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
+        config.eslintrc = path.resolve(configDir, config.eslintrc)
+    } else {
+        config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
+    }
 
     if (config.template) {
         config.template = path.resolve(configDir, config.template)
