@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "0.1.2-beta.2",
+  "version": "0.1.2-beta.3",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -41,6 +41,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "findup": "^0.1.5",
     "html-webpack-plugin": "^2.28.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
     "minimist": "1.2.0",
     "postcss": "^5.2.14",
