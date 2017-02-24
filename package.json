@@ -28,7 +28,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@dvhb/eslint-config": "^1.0.1",
+    "@dvhb/eslint-config": "*",
     "autoprefixer": "^6.7.4",
     "babel-core": "6.18.2",
     "babel-loader": "6.2.7",
