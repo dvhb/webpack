@@ -1,7 +1,7 @@
 {
   "name": "webpack-starter-kit-static-site-example",
   "description": "Webpack Starter kit static-site example",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/dvhbru/webpack.git",
   "author": "team@dvhb.ru",
   "repository": {
@@ -13,7 +13,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@dvhb/webpack": "0.1.2-beta.3",
+    "@dvhb/webpack": "1.0.0",
     "webpack": "^1.14.0"
   },
   "scripts": {
