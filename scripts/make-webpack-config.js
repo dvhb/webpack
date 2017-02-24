@@ -61,7 +61,23 @@ module.exports = function (config, env) {
             }),
         ],
         module: {
-            loaders: [],
+            loaders: [
+                {
+                    test: /\.js?$/,
+                    include: config.sourceDir,
+                    loader: 'babel',
+                },
+                {
+                    test: /\.pug/,
+                    include: config.sourceDir,
+                    loader: 'pug'
+                },
+                {
+                    test: /\.json$/,
+                    include: config.sourceDir,
+                    loader: 'json'
+                }
+            ],
         },
         postcss: [
             autoprefixer({

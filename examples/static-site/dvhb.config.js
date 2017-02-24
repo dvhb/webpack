@@ -16,13 +16,13 @@ module.exports = {
         webpackConfig.output.filename = '[name].js';
         webpackConfig.output.chunkFilename = '[name].js';
 
-        webpackConfig.module.loaders.push(
-            {
-                test: /\.js?$/,
-                include: dir,
-                loader: 'babel',
-            }
-        );
+        // webpackConfig.module.loaders.push(
+        //     {
+        //         test: /\.<extention>?$/,
+        //         include: dir,
+        //         loader: '<loader>',
+        //     }
+        // );
 
         return webpackConfig;
     }
