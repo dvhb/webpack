@@ -34,9 +34,18 @@ module.exports = function createServer(config, env) {
 
     // configure static template files, use template engine pug
     if (config.viewsDir) {
+        app.set('view engine', 'pug');
+        app.set('views', config.viewsDir);
+
         app.use(pugStatic({
             root: config.viewsDir
-        }))
+        }));
+
+        //404 error handler
+        app.use(function (req, res) {
+            res.status(404);
+            res.render('404');
+        });
     }
 
     // user defined customizations
