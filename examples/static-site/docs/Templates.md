@@ -7,14 +7,15 @@ Used pug (ex jade) templates in express application
 ```bash
 $ tree src/views
 
-src/views
+├── 404
+│   └── index.pug   # custom 404 error page
 ├── _partials
 │   ├── header.pug
 │   └── layout.pug
-├── category
+├── category        # resolve /category
 │   └── index.pug
-├── index.pug
-└── page1.pug
+├── index.pug       # resolve /
+└── page1.pug       # resolve /page1.html
 ```
 
 ## Global variables in templates
