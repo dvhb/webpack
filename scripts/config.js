@@ -91,6 +91,10 @@ function getConfig(options) {
         configDir,
     });
 
+    if (options.port){
+        config.serverPort= options.port
+    }
+
     if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
         config.eslintrc = path.resolve(configDir, config.eslintrc)
     } else {

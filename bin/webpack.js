@@ -62,7 +62,7 @@ function commandServer() {
                 `You have another server running at port ${config.serverPort} somewhere, shut it down first`
             ));
             console.log();
-            console.log('You can change the port using the `serverPort` option in your style guide config:');
+            console.log('You can change the port using the `serverPort` option in your dvhb.config.js:');
             console.log(chalk.underline(consts.DOCS_CONFIG));
         }
         else {
@@ -100,5 +100,6 @@ function commandHelp() {
         '',
         '    ' + chalk.yellow('--config') + '        Config file path',
         '    ' + chalk.yellow('--verbose') + '       Print debug information',
+        '    ' + chalk.yellow('--port') + '          Server port',
     ].join('\n'));
 }
