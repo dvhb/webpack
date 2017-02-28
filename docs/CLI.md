@@ -8,4 +8,5 @@ CLI Options:
 
 * `--config <file>`: Specify path to the config file.
 * `--verbose`: Print debug information.
-* `--port`: Server port.
+* `--port`: Server port, default: `3000`.
+* `--env`: Environment, default: `development`.

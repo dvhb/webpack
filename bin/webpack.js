@@ -101,5 +101,6 @@ function commandHelp() {
         '    ' + chalk.yellow('--config') + '        Config file path',
         '    ' + chalk.yellow('--verbose') + '       Print debug information',
         '    ' + chalk.yellow('--port') + '          Server port',
+        '    ' + chalk.yellow('--env') + '           Environment',
     ].join('\n'));
 }
