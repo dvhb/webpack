@@ -41,18 +41,17 @@ module.exports = function createServer(config, env) {
             root: config.viewsDir
         }));
 
+        // user defined customizations
+        if (config.configureServer) {
+            config.configureServer(app, env);
+        }
+
         //404 error handler
         app.use(function (req, res) {
             res.status(404);
             res.render('404');
         });
     }
-
-    // user defined customizations
-    if (config.configureServer) {
-        config.configureServer(app, env);
-    }
-
 
     /**
      * Local variables in express app
