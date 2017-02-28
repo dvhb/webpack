@@ -37,14 +37,14 @@ module.exports = function createServer(config, env) {
         app.set('view engine', 'pug');
         app.set('views', config.viewsDir);
 
-        app.use(pugStatic({
-            root: config.viewsDir
-        }));
-
         // user defined customizations
         if (config.configureServer) {
             config.configureServer(app, env);
         }
+
+        app.use(pugStatic({
+            root: config.viewsDir
+        }));
 
         //404 error handler
         app.use(function (req, res) {
