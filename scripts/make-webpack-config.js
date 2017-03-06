@@ -12,6 +12,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
+const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
 const semverUtils = require('semver-utils');
 const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
@@ -24,6 +25,29 @@ function validateWebpackConfig(webpackConfig) {
             throw Error(`DvhbWebpack: "include" option is missing for "${loader.test}" Webpack loader.`);
         }
     });
+}
+
+/**
+ * Entries
+ * @param config
+ * @param env
+ * @returns {Array}
+ */
+function getEntries(config, env) {
+    let entries = [];
+
+    if (env === 'development') {
+        entries.push('webpack-hot-middleware/client?reload=true');
+    }
+
+    //svg-sprite
+    if (utils.isFileExists(config.svgSpriteDir)) {
+        entries.push(path.resolve(__dirname, './entries/svg-sprite.js'));
+    }
+
+    //default entry point
+    entries.push(path.resolve(config.sourceDir, 'index'));
+    return entries;
 }
 
 module.exports = function (config, env) {
@@ -74,7 +98,15 @@ module.exports = function (config, env) {
                     test: /\.json$/,
                     include: config.sourceDir,
                     loader: 'json'
-                }
+                },
+                {
+                    test: /\.svg$/,
+                    include: config.svgSpriteDir,
+                    loader: 'svg-sprite?' + JSON.stringify({
+                        name: '[name]',
+                        prefixize: false
+                    }) + '!svgo'
+                },
             ],
         },
         postcss: [
@@ -139,17 +171,13 @@ module.exports = function (config, env) {
         });
     }
 
-    const entryScript = path.resolve(config.sourceDir, 'index');
-
     if (isProd) {
         webpackConfig = merge(webpackConfig, {
             output: {
                 filename: '[name].[chunkhash].js',
                 chunkFilename: '[name].[chunkhash].js'
             },
-            entry: [
-                entryScript,
-            ],
+            entry: getEntries(config, env),
             devtool: false,
             cache: false,
             plugins: [
@@ -190,10 +218,7 @@ module.exports = function (config, env) {
     }
     else {
         webpackConfig = merge(webpackConfig, {
-            entry: [
-                'webpack-hot-middleware/client?reload=true',
-                entryScript,
-            ],
+            entry: getEntries(config, env),
             cache: true,
             devtool: 'eval',
             stats: {

@@ -19,6 +19,7 @@ const DEFAULT_CONFIG = {
     title: 'Dvhb Webpack Starter kit',
     sourceDir: 'src',
     assetsDir: null,
+    svgSpriteDir: 'src/assets/svg-sprite',
     distDir: 'dist',
     viewsDir: 'src/views',
     template: 'src/index.html',
@@ -87,6 +88,7 @@ function getConfig(options) {
         sourceDir: path.resolve(configDir, config.sourceDir),
         distDir: path.resolve(configDir, config.distDir),
         viewsDir: path.resolve(configDir, config.viewsDir),
+        svgSpriteDir: path.resolve(configDir, config.svgSpriteDir),
         assetsDir: assetsDir,
         configDir,
     });
