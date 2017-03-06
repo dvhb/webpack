@@ -14,3 +14,7 @@ module.exports.isDirectoryExists = function (dir) {
     }
     return false;
 };
+
+module.exports.isFileExists = function (file) {
+    return fs.existsSync(file);
+};

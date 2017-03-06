@@ -4,6 +4,7 @@ const express = require('express');
 const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
 const pugStatic = require('express-pug');
+const utils = require('./utils/utils');
 
 module.exports = function createServer(config, env) {
     const webpackConfig = makeWebpackConfig(config, env);
@@ -46,11 +47,13 @@ module.exports = function createServer(config, env) {
             root: config.viewsDir
         }));
 
-        //404 error handler
-        app.use(function (req, res) {
-            res.status(404);
-            res.render('404');
-        });
+        if (utils.isFileExists(config.viewsDir + '/404/index.pug')) {
+            //404 error handler
+            app.use(function (req, res) {
+                res.status(404);
+                res.render('404');
+            });
+        }
     }
 
     /**
