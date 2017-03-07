@@ -39,6 +39,10 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).<br>
   You can use your own eslint config if exists `<project_dir>/.eslintrc`
 
+* **`templateVars`**<br>
+  Type: `Object`, default: `{}`<br>
+  Template global vars, useful for google analitics and other specific data
+
 * **`spa`**<br>
   Type: `String`, default: `false`<br>
   Use spa routing with html5mode

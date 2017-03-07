@@ -28,7 +28,8 @@ const DEFAULT_CONFIG = {
     verbose: false,
     extendWebpackConfig: null,
     eslintrc: '.eslintrc',
-    spa: false
+    spa: false,
+    templateVars: {}
 };
 const DEPENDENCIES = [
     {

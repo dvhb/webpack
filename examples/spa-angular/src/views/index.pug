@@ -1,9 +1,5 @@
-// spa entry
-html
-    head
-        title Angular SPA
-        script(src="vendor.js")
-        script(src="main.js")
+extends _partials/layout
 
-    body
-        h1 Angular SPA
+block content
+
+    div(ui-view="")

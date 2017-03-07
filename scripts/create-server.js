@@ -47,6 +47,17 @@ module.exports = function createServer(config, env) {
             root: config.viewsDir
         }));
 
+        //assets manifest. Used in production mode only
+        if (env === 'production') {
+            const manifestDir = config.distDir + '/manifest.json';
+            if (utils.isFileExists(manifestDir)) {
+                app.locals.manifest = require(manifestDir)
+            }
+        }
+
+        //template global variables
+        app.locals.templateVars = config.templateVars;
+
         if (config.spa) {
             //spa entry for all routes
             app.use(function (req, res) {

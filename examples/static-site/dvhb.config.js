@@ -8,13 +8,14 @@ module.exports = {
         'dist'    // webpack output directory
     ],
 
+    templateVars: {
+        googleAnalytics: {
+            id: 'A-59965942-1',
+        }
+    },
+
     extendWebpackConfig(webpackConfig) {
         const dir = path.resolve(__dirname, 'src');
-
-        //update chunkhash for dev/prod mode
-        //@todo rewrite assets from manifest.json in templates (express+static-pug)
-        webpackConfig.output.filename = '[name].js';
-        webpackConfig.output.chunkFilename = '[name].js';
 
         // webpackConfig.module.loaders.push(
         //     {
