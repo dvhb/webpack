@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -83,12 +83,14 @@
     "start": "npm run dev:basic",
     "dev:basic": "bin/webpack.js server --config examples/basic/dvhb.config.js --verbose",
     "dev:static-site": "bin/webpack.js server --config examples/static-site/dvhb.config.js --verbose",
+    "dev:spa-angular": "bin/webpack.js server --config examples/spa-angular/dvhb.config.js --verbose",
     "start:static-site": "bin/webpack.js server --config examples/static-site/dvhb.config.js --env=production",
     "prestart:static-site": "npm run build:static-site",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "lint-staged": "lint-staged",
     "build": "bin/webpack.js build --config examples/basic/dvhb.config.js",
     "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js",
+    "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js",
     "gh-pages": "echo \"Error: no gh-pages specified\" && exit 1",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html"
   },

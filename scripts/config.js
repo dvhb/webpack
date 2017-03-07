@@ -27,7 +27,8 @@ const DEFAULT_CONFIG = {
     serverPort: 3000,
     verbose: false,
     extendWebpackConfig: null,
-    eslintrc: '.eslintrc'
+    eslintrc: '.eslintrc',
+    spa: false
 };
 const DEPENDENCIES = [
     {
@@ -93,8 +94,8 @@ function getConfig(options) {
         configDir,
     });
 
-    if (options.port){
-        config.serverPort= options.port
+    if (options.port) {
+        config.serverPort = options.port
     }
 
     if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
@@ -105,6 +106,11 @@ function getConfig(options) {
 
     if (config.template) {
         config.template = path.resolve(configDir, config.template)
+    }
+
+    //if spa enabled then disable default template
+    if (config.spa) {
+        config.template = null;
     }
 
     if (config.verbose) {

@@ -47,12 +47,20 @@ module.exports = function createServer(config, env) {
             root: config.viewsDir
         }));
 
-        if (utils.isFileExists(config.viewsDir + '/404/index.pug')) {
-            //404 error handler
+        if (config.spa) {
+            //spa entry for all routes
             app.use(function (req, res) {
-                res.status(404);
-                res.render('404');
+                res.status(200);
+                res.render('index');
             });
+        } else {
+            //404 error handler
+            if (utils.isFileExists(config.viewsDir + '/404/index.pug')) {
+                app.use(function (req, res) {
+                    res.status(404);
+                    res.render('404');
+                });
+            }
         }
     }
 
