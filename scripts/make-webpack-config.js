@@ -58,7 +58,8 @@ module.exports = function (config, env) {
     let webpackConfig = {
         output: {
             path: config.distDir,
-            filename: '[name].js'
+            filename: '[name].js',
+            publicPath: config.publicPath
         },
         resolveLoader: {
             moduleExtensions: ['-loader', '.loader'],
@@ -76,7 +77,9 @@ module.exports = function (config, env) {
                 }
             }),
             new WebpackMd5Hash(),
-            new ManifestPlugin(),
+            new ManifestPlugin({
+                basePath: config.publicPath
+            }),
             new ChunkManifestPlugin({
                 filename: 'chunk-manifest.json',
                 manifestVariable: 'webpackManifest'

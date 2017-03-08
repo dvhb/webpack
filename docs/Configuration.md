@@ -14,6 +14,10 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Type: `String`, default: `dist`<br>
   The output directory.
 
+* **`publicPath`**<br>
+  Type: `String`, default: `/`<br>
+  Public path for assets
+
 * **`viewsDir`**<br>
   Type: `String`, default: `src/views`<br>
   Folder for `pug` templates.

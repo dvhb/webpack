@@ -21,6 +21,7 @@ const DEFAULT_CONFIG = {
     assetsDir: null,
     svgSpriteDir: 'src/assets/svg-sprite',
     distDir: 'dist',
+    publicPath: '/',
     viewsDir: 'src/views',
     template: 'src/index.html',
     serverHost: 'localhost',
