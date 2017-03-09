@@ -10,6 +10,7 @@ const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
@@ -54,6 +55,7 @@ module.exports = function (config, env) {
     process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
     const isProd = env === 'production';
+    const gitRevisionPlugin = new GitRevisionPlugin();
 
     let webpackConfig = {
         loader:{
@@ -72,6 +74,8 @@ module.exports = function (config, env) {
                 'process.env': {
                     NODE_ENV: JSON.stringify(env),
                 },
+                'VERSION': JSON.stringify(gitRevisionPlugin.version()),
+                'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
@@ -87,6 +91,7 @@ module.exports = function (config, env) {
                 filename: 'chunk-manifest.json',
                 manifestVariable: 'webpackManifest'
             }),
+            new GitRevisionPlugin()
         ],
         module: {
             loaders: [

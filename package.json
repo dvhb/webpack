@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -46,6 +46,7 @@
     "express-pug": "^1.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "findup": "^0.1.5",
+    "git-revision-webpack-plugin": "^2.4.1",
     "gulp": "^3.9.1",
     "gulp-filter": "^5.0.0",
     "gulp-pug": "^3.2.0",
