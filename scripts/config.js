@@ -24,12 +24,13 @@ const DEFAULT_CONFIG = {
     publicPath: '/',
     viewsDir: 'src/views',
     template: 'src/index.html',
+    spa: false,
+    staticSite: false,
     serverHost: 'localhost',
     serverPort: 3000,
     verbose: false,
     extendWebpackConfig: null,
     eslintrc: '.eslintrc',
-    spa: false,
     templateVars: {},
     appEnv: null // experimental option
 };
@@ -110,6 +111,11 @@ function getConfig(options) {
 
     if (config.template) {
         config.template = path.resolve(configDir, config.template)
+    }
+
+    //disable template in static site mode
+    if (config.staticSite) {
+        config.template = null;
     }
 
     //if spa enabled then disable default template

@@ -14,16 +14,17 @@ module.exports = function gulp(config, env, callback) {
     const opts = {
         env: env,
         config: argv.config,
+        'app-env': argv['app-env']
     };
 
     gulp.on('start', function () {
-        if (config.verbose){
+        if (config.verbose) {
             console.log(chalk.yellow('gulp starting...'));
         }
     });
 
     gulp.on('complete', function () {
-        if (config.verbose){
+        if (config.verbose) {
             console.log(chalk.yellow('gulp complete!'));
         }
 
@@ -31,14 +32,22 @@ module.exports = function gulp(config, env, callback) {
     });
 
     gulp.on('log', function (data) {
-        if (config.verbose){
+        if (config.verbose) {
             process.stdout.write(data);
         }
     });
 
+    let tasks = [
+        'default'
+    ];
+
+    if (!config.staticSite) {
+        tasks.push('templates')
+    }
+
     // equivalent of calling
-    // gulp views --env 'production' --config 'examples/static-site/dvhb.config.js'
-    gulp.run('views', opts, (err) => {
+    // gulp tasks --env 'production' --config 'examples/static-site/dvhb.config.js'
+    gulp.run(tasks, opts, (err) => {
         // complete!
     });
 };

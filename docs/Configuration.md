@@ -26,6 +26,10 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Type: `String`, default: `src/index.html`<br>
   HTML file to use as the template for application.
 
+* **`staticSite`**<br>
+  Type: `Boolean`, default: `false`<br>
+  Enable static site mode with express server
+
 * **`assetsDir`**<br>
   Type: `String` or `Array`, optional<br>
   Your application static assets folder, will be accessible as `/` in the dev-server or prod-server.

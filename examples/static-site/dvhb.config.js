@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    template: null,
+    staticSite: true, // enable static site mode
 
     assetsDir: [
         'assets', // directory for static images/fonts/video
