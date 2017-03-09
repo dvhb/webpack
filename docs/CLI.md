@@ -10,4 +10,4 @@ CLI Options:
 * `--verbose`: Print debug information.
 * `--port`: Server port, default: `3000`.
 * `--env`: Environment, default: `development`.
-* `--app-env`: Application environment, experimental option.
+* `--app-env`: Application environment, _experimental option_.

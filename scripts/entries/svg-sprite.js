@@ -19,5 +19,5 @@
  * </svg>
  *
  */
-let files = require.context('assets/svg-sprite', false, /\.svg$/);
+var files = require.context('assets/svg-sprite', false, /\.svg$/);
 files.keys().forEach(files);

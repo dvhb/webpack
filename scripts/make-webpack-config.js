@@ -15,9 +15,6 @@ const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
-const semverUtils = require('semver-utils');
-const webpackVersion = semverUtils.parseRange(require('webpack/package.json').version)[0].major;
-const isWebpack2 = webpackVersion === '2';
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
 function validateWebpackConfig(webpackConfig) {
@@ -68,6 +65,15 @@ module.exports = function (config, env) {
         },
         resolveLoader: {
             moduleExtensions: ['-loader', '.loader'],
+        },
+        debug: !isProd,
+        resolve: {
+            extensions: ['', '.js', '.jsx', '.json'],
+            root: config.sourceDir,
+            moduleDirectories: [
+                nodeModulesDir,
+                'node_modules',
+            ],
         },
         plugins: [
             new webpack.DefinePlugin({
@@ -137,49 +143,6 @@ module.exports = function (config, env) {
                 template: config.template,
                 inject: true,
             }));
-    }
-
-    const loaderModulesDirectories = [
-        nodeModulesDir,
-        'node_modules',
-    ];
-
-    if (isWebpack2) {
-        webpackConfig = merge(webpackConfig, {
-            resolve: {
-                extensions: ['.js', '.jsx', '.json'],
-                modules: [
-                    config.sourceDir,
-                    nodeModulesDir,
-                    'node_modules',
-                ],
-            },
-            resolveLoader: {
-                modules: loaderModulesDirectories,
-            },
-            plugins: [
-                new webpack.LoaderOptionsPlugin({
-                    minimize: isProd,
-                    debug: !isProd
-                }),
-            ],
-        });
-    }
-    else {
-        webpackConfig = merge(webpackConfig, {
-            resolve: {
-                extensions: ['', '.js', '.jsx', '.json'],
-                root: config.sourceDir,
-                moduleDirectories: [
-                    nodeModulesDir,
-                    'node_modules',
-                ],
-            },
-            resolveLoader: {
-                modulesDirectories: loaderModulesDirectories,
-            },
-            debug: !isProd,
-        });
     }
 
     if (isProd) {
