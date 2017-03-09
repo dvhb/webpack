@@ -30,7 +30,8 @@ const DEFAULT_CONFIG = {
     extendWebpackConfig: null,
     eslintrc: '.eslintrc',
     spa: false,
-    templateVars: {}
+    templateVars: {},
+    appEnv: null // experimental option
 };
 const DEPENDENCIES = [
     {
@@ -86,6 +87,7 @@ function getConfig(options) {
 
     config = merge({}, DEFAULT_CONFIG, config);
     config = merge({}, config, {
+        appEnv: options['app-env'],
         env: options.env || 'development',
         verbose: !!options.verbose,
         sourceDir: path.resolve(configDir, config.sourceDir),

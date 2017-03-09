@@ -56,6 +56,9 @@ module.exports = function (config, env) {
     const isProd = env === 'production';
 
     let webpackConfig = {
+        loader:{
+            configEnvironment: config.appEnv
+        },
         output: {
             path: config.distDir,
             filename: '[name].js',
