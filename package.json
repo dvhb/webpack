@@ -20,6 +20,7 @@
     "dvhb-webpack": "bin/webpack.js"
   },
   "files": [
+    "docs",
     "bin",
     "scripts",
     "gulp",
