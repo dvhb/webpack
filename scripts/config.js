@@ -20,6 +20,7 @@ const DEFAULT_CONFIG = {
     sourceDir: 'src',
     assetsDir: null,
     svgSpriteDir: 'src/assets/svg-sprite',
+    svgInlineDir: 'src/assets/svg-inline',
     distDir: 'dist',
     publicPath: '/',
     viewsDir: 'src/views',
@@ -95,6 +96,7 @@ function getConfig(options) {
         distDir: path.resolve(configDir, config.distDir),
         viewsDir: path.resolve(configDir, config.viewsDir),
         svgSpriteDir: path.resolve(configDir, config.svgSpriteDir),
+        svgInlineDir: path.resolve(configDir, config.svgInlineDir),
         assetsDir: assetsDir,
         configDir,
     });

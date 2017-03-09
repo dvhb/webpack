@@ -12,6 +12,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
@@ -129,6 +130,13 @@ module.exports = function (config, env) {
         postcss: [
             autoprefixer({
                 browsers: ['last 6 versions']
+            }),
+
+            //svg inline in css
+            postcssSVG({
+                paths: [
+                    config.svgInlineDir
+                ]
             })
         ],
         eslint: {

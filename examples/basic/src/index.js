@@ -2,6 +2,8 @@
  * Entry point for app
  */
 
+import './styles';
+
 import APP_ENV from 'webpack-config-loader!./config';
 import './components/btn';
 import './components/icon';
