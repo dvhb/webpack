@@ -2,13 +2,14 @@
 
 const gulpRunner = require('gulp-runner');
 const chalk = require('chalk');
+const path = require('path');
 
 const minimist = require('minimist');
 const argv = minimist(process.argv.slice(2));
 
 module.exports = function gulp(config, env, callback) {
 
-    const gulp = new gulpRunner('gulpfile.js');
+    const gulp = new gulpRunner(path.resolve(__dirname, '../gulpfile.js'));
 
     const opts = {
         env: env,
