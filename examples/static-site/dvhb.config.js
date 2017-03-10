@@ -4,7 +4,6 @@ module.exports = {
     staticSite: true, // enable static site mode
 
     assetsDir: [
-        'assets', // directory for static images/fonts/video
         'dist'    // webpack output directory
     ],
 

@@ -14,7 +14,7 @@ module.exports = function createServer(config, env) {
     if (env === 'development') {
         // register webpack middlewares
         app.use(require('webpack-dev-middleware')(compiler, {
-            noInfo: true,
+            noInfo: !config.verbose,
             stats: webpackConfig.stats || {},
         }));
 

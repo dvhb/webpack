@@ -11,6 +11,7 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
@@ -56,7 +57,7 @@ module.exports = function (config, env) {
     const gitRevisionPlugin = new GitRevisionPlugin();
 
     let webpackConfig = {
-        loader:{
+        loader: {
             configEnvironment: config.appEnv
         },
         output: {
@@ -98,7 +99,17 @@ module.exports = function (config, env) {
                 filename: 'chunk-manifest.json',
                 manifestVariable: 'webpackManifest'
             }),
-            new GitRevisionPlugin()
+            new GitRevisionPlugin(),
+
+            new CopyWebpackPlugin([{
+                from: path.resolve(config.sourceDir + '/assets'), to: ''
+            }], {
+                ignore: [
+                    '*.md',
+                    '**/svg-inline/*.svg',
+                    '**/svg-sprite/*.svg'
+                ]
+            }),
         ],
         module: {
             loaders: [

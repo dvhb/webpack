@@ -39,3 +39,27 @@ Example for `src/assets/svg-inline/logo.svg`:
   background-image: svg('logo');
 }
 ```
+
+## Static files
+
+### Images
+
+Put images into `src/assets/img` folder
+
+Example for `src/assets/img/avatar.png`
+
+```css
+.logo {
+  background-image: url('/img/avatar.png');
+}
+```
+
+In template
+
+```html
+<img src="/img/avatar.png" />
+```
+
+### Fonts
+
+Put fonts into `src/assets/fonts` folder
