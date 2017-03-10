@@ -99,17 +99,7 @@ module.exports = function (config, env) {
                 filename: 'chunk-manifest.json',
                 manifestVariable: 'webpackManifest'
             }),
-            new GitRevisionPlugin(),
-
-            new CopyWebpackPlugin([{
-                from: path.resolve(config.sourceDir + '/assets'), to: ''
-            }], {
-                ignore: [
-                    '*.md',
-                    '**/svg-inline/*.svg',
-                    '**/svg-sprite/*.svg'
-                ]
-            }),
+            new GitRevisionPlugin()
         ],
         module: {
             loaders: [
@@ -162,6 +152,19 @@ module.exports = function (config, env) {
                 template: config.template,
                 inject: true,
             }));
+    }
+
+    //add CopyWebpackPlugin plugin
+    if (utils.isFileExists(config.sourceDir + '/assets')) {
+        webpackConfig.plugins.push(new CopyWebpackPlugin([{
+            from: path.resolve(config.sourceDir + '/assets'), to: ''
+        }], {
+            ignore: [
+                '*.md',
+                '**/svg-inline/*.svg',
+                '**/svg-sprite/*.svg'
+            ]
+        }));
     }
 
     if (isProd) {
