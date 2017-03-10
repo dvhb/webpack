@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -72,6 +72,7 @@
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.0",
+    "supports-color": "^3.2.3",
     "svg-sprite-loader": "^0.3.0",
     "svgo-loader": "^1.1.2",
     "webpack-cleanup-plugin": "^0.4.2",

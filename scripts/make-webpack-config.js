@@ -253,10 +253,6 @@ module.exports = function (config, env) {
             entry: getEntries(config, env),
             cache: true,
             devtool: 'eval',
-            stats: {
-                colors: true,
-                reasons: true,
-            },
             plugins: [
                 new webpack.optimize.OccurenceOrderPlugin(),
                 new webpack.HotModuleReplacementPlugin(),

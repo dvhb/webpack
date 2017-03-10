@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
 const pugStatic = require('express-pug');
 const utils = require('./utils/utils');
+const colorsSupported = require('supports-color');
 
 module.exports = function createServer(config, env) {
     const webpackConfig = makeWebpackConfig(config, env);
@@ -14,8 +15,12 @@ module.exports = function createServer(config, env) {
     if (env === 'development') {
         // register webpack middlewares
         app.use(require('webpack-dev-middleware')(compiler, {
-            noInfo: !config.verbose,
-            stats: webpackConfig.stats || {},
+            noInfo: false,
+            stats: webpackConfig.stats || {
+                colors: colorsSupported,
+                chunks: false,
+                modules: false
+            },
         }));
 
         app.use(require('webpack-hot-middleware')(compiler));
