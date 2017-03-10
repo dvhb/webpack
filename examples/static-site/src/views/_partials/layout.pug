@@ -6,6 +6,7 @@ html
         title #{title}
 
         include styles
+        block extra_styles
 
     body
         include header
@@ -13,3 +14,5 @@ html
         block content
 
         include scripts
+        block extra_scripts
+

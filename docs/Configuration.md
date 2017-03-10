@@ -59,6 +59,19 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Type: `String`, default: `false`<br>
   Use spa routing with html5mode.
 
+* **`extendEntries`**<br>
+  Type: `Object`<br>
+  Extend app entries. Example for `src/extEntry.js`:
+  
+  ```javascript
+  module.exports = {
+    // ...
+    extendEntries: {
+      extEntry: 'extEntry'
+    },
+  };
+  ```
+
 * **`extendWebpackConfig`**<br>
   Type: `Function`, optional<br>
   Function that allows you to extend Webpack config:

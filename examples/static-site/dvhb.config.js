@@ -3,6 +3,10 @@ const path = require('path');
 module.exports = {
     staticSite: true, // enable static site mode
 
+    extendEntries: {
+        extEntry: 'extEntry'
+    },
+
     assetsDir: [
         'dist'    // webpack output directory
     ],

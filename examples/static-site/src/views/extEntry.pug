@@ -1,0 +1,17 @@
+extends _partials/layout
+
+block vars
+    - var title = 'extEntry'
+
+block extra_styles
+    if manifest && manifest['/extEntry.css']
+        link(href=manifest['/extEntry.css'] rel="stylesheet")
+
+block extra_scripts
+    if manifest && manifest['/extEntry.js']
+        script(src=manifest['/extEntry.js'])
+    else
+        script(src='/extEntry.js')
+
+block content
+    h1 extEntry

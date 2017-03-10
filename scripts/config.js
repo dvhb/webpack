@@ -17,6 +17,7 @@ const DvhbWebpackError = require('./utils/error');
 const CONFIG_FILENAME = 'dvhb.config.js';
 const DEFAULT_CONFIG = {
     title: 'Dvhb Webpack Starter kit',
+    extendEntries: null,
     sourceDir: 'src',
     assetsDir: null,
     svgSpriteDir: 'src/assets/svg-sprite',

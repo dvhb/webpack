@@ -34,19 +34,33 @@ function validateWebpackConfig(webpackConfig) {
  * @returns {Array}
  */
 function getEntries(config, env) {
-    let entries = [];
+    let entries = {
+        main: []
+    };
 
-    if (env === 'development') {
-        entries.push('webpack-hot-middleware/client?reload=true');
-    }
+    //default entry point
+    entries.main.push(path.resolve(config.sourceDir, 'index'));
 
     //svg-sprite
     if (utils.isFileExists(config.svgSpriteDir)) {
-        entries.push(path.resolve(__dirname, './entries/svg-sprite.js'));
+        entries.main.unshift(path.resolve(__dirname, './entries/svg-sprite.js'));
     }
 
-    //default entry point
-    entries.push(path.resolve(config.sourceDir, 'index'));
+    //extend default entries
+    if (config.extendEntries && typeof config.extendEntries == 'object') {
+        entries = merge(entries, config.extendEntries);
+    }
+
+    if (env === 'development') {
+        let entryKeys = Object.keys(entries);
+        entryKeys.forEach(function (e) {
+            if (typeof entries[e] === 'string') {
+                entries[e] = [entries[e]]
+            }
+            entries[e].unshift('webpack-hot-middleware/client?reload=true');
+        });
+    }
+
     return entries;
 }
 
