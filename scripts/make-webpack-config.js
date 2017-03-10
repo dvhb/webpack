@@ -145,6 +145,31 @@ module.exports = function (config, env) {
         }
     };
 
+    // add modernizr
+    if (utils.isFileExists(config.modernizrrc)) {
+        webpackConfig = merge(webpackConfig, {
+            module: {
+                loaders: [
+                    {
+                        test: /\.modernizrrc.js$/,
+                        include: config.sourceDir,
+                        loader: "modernizr"
+                    },
+                    {
+                        test: /\.modernizrrc(\.json)?$/,
+                        include: config.sourceDir,
+                        loader: "modernizr!json"
+                    }
+                ]
+            },
+            resolve: {
+                alias: {
+                    modernizr$: config.modernizrrc
+                }
+            }
+        });
+    }
+
     if (config.template) {
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({

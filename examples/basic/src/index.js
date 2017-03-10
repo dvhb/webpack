@@ -12,6 +12,9 @@ console.log('APP_ENV', APP_ENV);
 console.log('VERSION', VERSION);
 console.log('COMMITHASH', COMMITHASH);
 
+import Modernizr from 'modernizr';
+console.log(Modernizr);
+
 //use it for enable HRM
 // if (module.hot) {
 //     module.hot.accept();

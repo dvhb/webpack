@@ -32,6 +32,7 @@ const DEFAULT_CONFIG = {
     verbose: false,
     extendWebpackConfig: null,
     eslintrc: '.eslintrc',
+    modernizrrc: 'src/.modernizrrc',
     templateVars: {},
     appEnv: null // experimental option
 };
@@ -98,6 +99,7 @@ function getConfig(options) {
         svgSpriteDir: path.resolve(configDir, config.svgSpriteDir),
         svgInlineDir: path.resolve(configDir, config.svgInlineDir),
         assetsDir: assetsDir,
+        modernizrrc: path.resolve(configDir, config.modernizrrc),
         configDir,
     });
 
