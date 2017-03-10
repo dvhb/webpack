@@ -16,7 +16,7 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
 
 * **`publicPath`**<br>
   Type: `String`, default: `/`<br>
-  Public path for assets
+  Public path for assets.
 
 * **`viewsDir`**<br>
   Type: `String`, default: `src/views`<br>
@@ -28,7 +28,7 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
 
 * **`staticSite`**<br>
   Type: `Boolean`, default: `false`<br>
-  Enable static site mode with express server
+  Enable static site mode with express server.
 
 * **`assetsDir`**<br>
   Type: `String` or `Array`, optional<br>
@@ -45,15 +45,19 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
 * **`eslintrc`**<br>
   Type: `String`, default: `.eslintrc`<br>
   Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).<br>
-  You can use your own eslint config if exists `<project_dir>/.eslintrc`
+  You can use your own eslint config if exists `<project_dir>/.eslintrc`.
+
+* **`modernizrrc`**<br>
+  Type: `String`, default: `src/.modernizrrc`<br>
+  Use modernizer in application.
 
 * **`templateVars`**<br>
   Type: `Object`, default: `{}`<br>
-  Template global vars, useful for google analitics and other specific data
+  Template global vars, useful for google analitics and other specific data.
 
 * **`spa`**<br>
   Type: `String`, default: `false`<br>
-  Use spa routing with html5mode
+  Use spa routing with html5mode.
 
 * **`extendWebpackConfig`**<br>
   Type: `Function`, optional<br>

@@ -10,6 +10,33 @@
 * **`COMMITHASH`**<br>
   Git commit hash such as `7c16d8b1abeced419c14eb9908baeb4229ac0542`
 
+### Modernizer
+
+Plugin [modernizr-loader](https://github.com/peerigon/modernizr-loader)
+
+Add `src/.modernizrrc` like
+
+```
+{
+  "minify": true,
+  "options": [
+    "setClasses"
+  ],
+  "feature-detects": []
+}
+
+```
+
+And javascript
+
+```js
+import Modernizr from 'modernizr';
+
+if (!Modernizr.promises) {
+    // ...
+}
+```
+
 ## Assets
 
 ### Structure
