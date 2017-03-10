@@ -13,8 +13,9 @@
 ### Modernizer
 
 Plugin [modernizr-loader](https://github.com/peerigon/modernizr-loader)
+All .modernizrrc options – [config-all.json](https://github.com/Modernizr/Modernizr/blob/master/lib/config-all.json)
 
-Add `src/.modernizrrc` like
+Example `src/.modernizrrc`:
 
 ```
 {
