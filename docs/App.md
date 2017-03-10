@@ -10,7 +10,26 @@
 * **`COMMITHASH`**<br>
   Git commit hash such as `7c16d8b1abeced419c14eb9908baeb4229ac0542`
 
-## Styles
+## Assets
+
+### Structure
+
+```
+$ tree src/assets
+.
+├── favicon.ico
+├── fonts
+│   └── Readme.md
+├── img
+│   ├── Readme.md
+│   └── avatar.png
+├── svg-inline
+│   ├── Readme.md
+│   └── check.svg
+└── svg-sprite
+    └── Readme.md
+
+```
 
 ### SVG sprite
 
@@ -39,8 +58,6 @@ Example for `src/assets/svg-inline/logo.svg`:
   background-image: svg('logo');
 }
 ```
-
-## Static files
 
 ### Images
 
