@@ -11,23 +11,6 @@ const consts = require('../scripts/consts');
 const DvhbWebpackError = require('../scripts/utils/error');
 const argv = minimist(process.argv.slice(2));
 
-let config;
-try {
-    config = getConfig(argv);
-}
-catch (err) {
-    if (err instanceof DvhbWebpackError) {
-        console.error(chalk.bold.red(err.message));
-        console.log();
-        console.log('Learn how to configure your webpack config:');
-        console.log(chalk.underline(consts.DOCS_CONFIG));
-        process.exit(1);
-    }
-    else {
-        throw err;
-    }
-}
-
 switch (argv._[0]) {
     case 'build':
         commandBuild();
@@ -35,11 +18,15 @@ switch (argv._[0]) {
     case 'server':
         commandServer();
         break;
+    case 'init':
+        commandInit();
+        break;
     default:
         commandHelp();
 }
 
 function commandBuild() {
+    let config = loadConfig(argv);
     console.log('Building project...');
 
     const build = require('../scripts/build');
@@ -56,6 +43,8 @@ function commandBuild() {
 }
 
 function commandServer() {
+    let config = loadConfig(argv);
+
     process.on('uncaughtException', err => {
         if (err.code === 'EADDRINUSE') {
             console.error(chalk.bold.red(
@@ -82,6 +71,43 @@ function commandServer() {
             console.log();
         }
     });
+}
+
+function commandInit() {
+    console.log('Init new project');
+    //
+    // const build = require('../scripts/build');
+    // build(config, err => {
+    //     if (err) {
+    //         console.log(err);
+    //         process.exit(1);
+    //     }
+    //     else {
+    //         console.log('Project published to:');
+    //         console.log(chalk.underline(config.distDir));
+    //     }
+    // });
+}
+
+function loadConfig(options){
+    let config;
+    try {
+        config = getConfig(options);
+    }
+    catch (err) {
+        if (err instanceof DvhbWebpackError) {
+            console.error(chalk.bold.red(err.message));
+            console.log();
+            console.log('Learn how to configure your webpack config:');
+            console.log(chalk.underline(consts.DOCS_CONFIG));
+            process.exit(1);
+        }
+        else {
+            throw err;
+        }
+    }
+
+    return config;
 }
 
 function commandHelp() {

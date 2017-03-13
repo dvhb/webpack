@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.2.8",
+  "version": "1.2.8-beta.1",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -95,6 +95,7 @@
     "webpack": "1.13.3"
   },
   "scripts": {
+    "init": "bin/webpack.js init",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev:basic",
     "dev:basic": "bin/webpack.js server --config examples/basic/dvhb.config.js --verbose",
