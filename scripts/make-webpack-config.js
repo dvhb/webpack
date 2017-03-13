@@ -184,7 +184,7 @@ module.exports = function (config, env) {
         });
     }
 
-    if (config.template) {
+    if (utils.isFileExists(config.template)) {
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
                 title: config.title,
