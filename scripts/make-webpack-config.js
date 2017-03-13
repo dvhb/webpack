@@ -138,7 +138,13 @@ module.exports = function (config, env) {
                     loader: 'svg-sprite?' + JSON.stringify({
                         name: '[name]',
                         prefixize: false
-                    }) + '!svgo'
+                    }) + '!svgo?' + JSON.stringify({
+                        plugins: [
+                            {removeTitle: true},
+                            {convertColors: {shorthex: false}},
+                            {convertPathData: false}
+                        ]
+                    })
                 },
             ],
         },
