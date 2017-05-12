@@ -83,7 +83,8 @@
     "webpack-manifest-plugin": "^1.1.0",
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "0.15.0",
-    "yeoman-generator": "^1.1.1"
+    "yeoman-environment": "1.6.3",
+    "yeoman-generator": "0.24.1"
   },
   "peerDependencies": {
     "webpack": "1"
@@ -94,11 +95,13 @@
     "gh-pages": "~0.11.0",
     "lint-staged": "~3.2.5",
     "mock-require": "~1.3.0",
-    "webpack": "1.13.3"
+    "webpack": "1.13.3",
+    "yeoman-test": "^1.5.0"
   },
   "scripts": {
     "init": "bin/webpack.js init",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:init": "node fixture.js",
     "start": "npm run dev:basic",
     "dev:basic": "bin/webpack.js server --config examples/basic/dvhb.config.js --verbose",
     "dev:static-site": "bin/webpack.js server --config examples/static-site/dvhb.config.js --verbose",

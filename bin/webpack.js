@@ -11,6 +11,9 @@ const consts = require('../scripts/consts');
 const DvhbWebpackError = require('../scripts/utils/error');
 const argv = minimist(process.argv.slice(2));
 
+const yeoman = require('yeoman-environment');
+const path = require('path');
+
 switch (argv._[0]) {
     case 'build':
         commandBuild();
@@ -74,19 +77,12 @@ function commandServer() {
 }
 
 function commandInit() {
-    console.log('Init new project');
-    //
-    // const build = require('../scripts/build');
-    // build(config, err => {
-    //     if (err) {
-    //         console.log(err);
-    //         process.exit(1);
-    //     }
-    //     else {
-    //         console.log('Project published to:');
-    //         console.log(chalk.underline(config.distDir));
-    //     }
-    // });
+    const env = yeoman.createEnv();
+    const dir = path.resolve(__dirname, `../commands/init`);
+    const done = (exitCode) => process.exit(exitCode || 0);
+
+    env.register(require.resolve(dir), `dvhb:init`);
+    env.run(`dvhb:init`, done);
 }
 
 function loadConfig(options){
