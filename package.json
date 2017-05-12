@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.2.8",
+  "version": "1.3.0-beta.5",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -22,6 +22,7 @@
   "files": [
     "docs",
     "bin",
+    "commands",
     "scripts",
     "gulp",
     "gulpfile.js",
@@ -74,14 +75,17 @@
     "stylus-loader": "^2.5.0",
     "supports-color": "^3.2.3",
     "svg-sprite-loader": "^0.3.0",
-    "svgo-loader": "^1.1.2",
+    "svgo-loader": "^1.2.0",
+    "webpack-bundle-analyzer": "^2.3.1",
     "webpack-cleanup-plugin": "^0.4.2",
     "webpack-config-loader": "^0.1.0",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.1",
     "webpack-manifest-plugin": "^1.1.0",
     "webpack-md5-hash": "0.0.5",
-    "webpack-merge": "0.15.0"
+    "webpack-merge": "0.15.0",
+    "yeoman-environment": "1.6.3",
+    "yeoman-generator": "0.24.1"
   },
   "peerDependencies": {
     "webpack": "1"
@@ -92,10 +96,13 @@
     "gh-pages": "~0.11.0",
     "lint-staged": "~3.2.5",
     "mock-require": "~1.3.0",
-    "webpack": "1.13.3"
+    "webpack": "1.13.3",
+    "yeoman-test": "^1.5.0"
   },
   "scripts": {
+    "init": "bin/webpack.js init",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:init": "node fixture.js",
     "start": "npm run dev:basic",
     "dev:basic": "bin/webpack.js server --config examples/basic/dvhb.config.js --verbose",
     "dev:static-site": "bin/webpack.js server --config examples/static-site/dvhb.config.js --verbose",
@@ -104,9 +111,9 @@
     "prestart:static-site": "npm run build:static-site",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "lint-staged": "lint-staged",
-    "build": "bin/webpack.js build --config examples/basic/dvhb.config.js --verbose",
-    "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose",
-    "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose",
+    "build": "bin/webpack.js build --config examples/basic/dvhb.config.js --verbose --app-env=development",
+    "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose --app-env=development",
+    "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose --app-env=development",
     "gh-pages": "echo \"Error: no gh-pages specified\" && exit 1",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html"
   },

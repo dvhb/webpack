@@ -1,0 +1,18 @@
+html
+
+    block vars
+
+    head
+        title #{title}
+
+        include styles
+        block extra_styles
+
+    body
+        include header
+
+        block content
+
+        include scripts
+        block extra_scripts
+

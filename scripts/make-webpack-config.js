@@ -12,6 +12,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const autoprefixer = require('autoprefixer');
 const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
@@ -138,7 +139,13 @@ module.exports = function (config, env) {
                     loader: 'svg-sprite?' + JSON.stringify({
                         name: '[name]',
                         prefixize: false
-                    }) + '!svgo'
+                    }) + '!svgo?' + JSON.stringify({
+                        plugins: [
+                            {removeTitle: true},
+                            {convertColors: {shorthex: false}},
+                            {convertPathData: false}
+                        ]
+                    })
                 },
             ],
         },
@@ -184,7 +191,7 @@ module.exports = function (config, env) {
         });
     }
 
-    if (config.template) {
+    if (utils.isFileExists(config.template)) {
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
                 title: config.title,
@@ -230,7 +237,14 @@ module.exports = function (config, env) {
                     mangle: false,
                 }),
 
-                new ExtractTextPlugin('[name].[contenthash].css')
+                new ExtractTextPlugin('[name].[contenthash].css'),
+
+                new BundleAnalyzerPlugin({
+                    analyzerMode: (config.appEnv === 'development') ? 'static' : 'disable',
+                    openAnalyzer: false,
+                    reportFilename: 'report.html',
+                    logLevel: 'error'
+                })
             ],
             module: {
                 loaders: [
@@ -257,6 +271,11 @@ module.exports = function (config, env) {
                 new webpack.optimize.OccurenceOrderPlugin(),
                 new webpack.HotModuleReplacementPlugin(),
                 new webpack.NoErrorsPlugin(),
+                new BundleAnalyzerPlugin({
+                    analyzerMode: 'server',
+                    openAnalyzer: false,
+                    logLevel: 'info'
+                })
             ],
             module: {
                 loaders: [

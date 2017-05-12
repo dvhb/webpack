@@ -1,13 +1,7 @@
 {
-  "name": "webpack-starter-kit-basic-example",
-  "description": "Webpack Starter kit basic example",
+  "name": "<%= data.packageName %>",
   "version": "1.0.0",
-  "homepage": "https://github.com/dvhbru/webpack.git",
-  "author": "team@dvhb.ru",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/dvhbru/webpack.git"
-  },
+  "description": "<%= data.description %>",
   "license": "MIT",
   "engines": {
     "node": ">=6"

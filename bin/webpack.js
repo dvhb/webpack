@@ -11,22 +11,8 @@ const consts = require('../scripts/consts');
 const DvhbWebpackError = require('../scripts/utils/error');
 const argv = minimist(process.argv.slice(2));
 
-let config;
-try {
-    config = getConfig(argv);
-}
-catch (err) {
-    if (err instanceof DvhbWebpackError) {
-        console.error(chalk.bold.red(err.message));
-        console.log();
-        console.log('Learn how to configure your webpack config:');
-        console.log(chalk.underline(consts.DOCS_CONFIG));
-        process.exit(1);
-    }
-    else {
-        throw err;
-    }
-}
+const yeoman = require('yeoman-environment');
+const path = require('path');
 
 switch (argv._[0]) {
     case 'build':
@@ -35,11 +21,15 @@ switch (argv._[0]) {
     case 'server':
         commandServer();
         break;
+    case 'init':
+        commandInit();
+        break;
     default:
         commandHelp();
 }
 
 function commandBuild() {
+    let config = loadConfig(argv);
     console.log('Building project...');
 
     const build = require('../scripts/build');
@@ -56,6 +46,8 @@ function commandBuild() {
 }
 
 function commandServer() {
+    let config = loadConfig(argv);
+
     process.on('uncaughtException', err => {
         if (err.code === 'EADDRINUSE') {
             console.error(chalk.bold.red(
@@ -82,6 +74,36 @@ function commandServer() {
             console.log();
         }
     });
+}
+
+function commandInit() {
+    const env = yeoman.createEnv();
+    const dir = path.resolve(__dirname, `../commands/init`);
+    const done = (exitCode) => process.exit(exitCode || 0);
+
+    env.register(require.resolve(dir), `dvhb:init`);
+    env.run(`dvhb:init`, done);
+}
+
+function loadConfig(options){
+    let config;
+    try {
+        config = getConfig(options);
+    }
+    catch (err) {
+        if (err instanceof DvhbWebpackError) {
+            console.error(chalk.bold.red(err.message));
+            console.log();
+            console.log('Learn how to configure your webpack config:');
+            console.log(chalk.underline(consts.DOCS_CONFIG));
+            process.exit(1);
+        }
+        else {
+            throw err;
+        }
+    }
+
+    return config;
 }
 
 function commandHelp() {

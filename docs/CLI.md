@@ -1,5 +1,7 @@
 # CLI commands and options
 
+`dvhb-webpack init`: Init new project.
+
 `dvhb-webpack server`: Run dev/prod server.
 
 `dvhb-webpack build`: Generate a dist bundle for project.
