@@ -12,7 +12,6 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const autoprefixer = require('autoprefixer');
 const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
@@ -237,14 +236,7 @@ module.exports = function (config, env) {
                     mangle: false,
                 }),
 
-                new ExtractTextPlugin('[name].[contenthash].css'),
-
-                new BundleAnalyzerPlugin({
-                    analyzerMode: (config.appEnv === 'development') ? 'static' : 'disable',
-                    openAnalyzer: false,
-                    reportFilename: 'report.html',
-                    logLevel: 'error'
-                })
+                new ExtractTextPlugin('[name].[contenthash].css')
             ],
             module: {
                 loaders: [
@@ -270,12 +262,7 @@ module.exports = function (config, env) {
             plugins: [
                 new webpack.optimize.OccurenceOrderPlugin(),
                 new webpack.HotModuleReplacementPlugin(),
-                new webpack.NoErrorsPlugin(),
-                new BundleAnalyzerPlugin({
-                    analyzerMode: 'server',
-                    openAnalyzer: false,
-                    logLevel: 'info'
-                })
+                new webpack.NoErrorsPlugin()
             ],
             module: {
                 loaders: [
