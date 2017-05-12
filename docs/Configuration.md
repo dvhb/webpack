@@ -22,10 +22,6 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   Type: `String`, default: `src/views`<br>
   Folder for `pug` templates.
 
-* **`template`**<br>
-  Type: `String`, default: `src/index.html`<br>
-  HTML file to use as the template for application.
-
 * **`staticSite`**<br>
   Type: `Boolean`, default: `false`<br>
   Enable static site mode with express server.
@@ -62,7 +58,7 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
 * **`extendEntries`**<br>
   Type: `Object`<br>
   Extend app entries. Example for `src/extEntry.js`:
-  
+
   ```javascript
   module.exports = {
     // ...

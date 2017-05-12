@@ -25,7 +25,6 @@ const DEFAULT_CONFIG = {
     distDir: 'dist',
     publicPath: '/',
     viewsDir: 'src/views',
-    template: 'src/index.html',
     spa: false,
     staticSite: false,
     serverHost: 'localhost',
@@ -112,20 +111,6 @@ function getConfig(options) {
         config.eslintrc = path.resolve(configDir, config.eslintrc)
     } else {
         config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
-    }
-
-    if (config.template) {
-        config.template = path.resolve(configDir, config.template)
-    }
-
-    //disable template in static site mode
-    if (config.staticSite) {
-        config.template = null;
-    }
-
-    //if spa enabled then disable default template
-    if (config.spa) {
-        config.template = null;
     }
 
     if (config.verbose) {

@@ -107,9 +107,9 @@
     "prestart:static-site": "npm run build:static-site",
     "lint": "./node_modules/.bin/eslint . --ext .js",
     "lint-staged": "lint-staged",
-    "build": "bin/webpack.js build --config examples/basic/dvhb.config.js --verbose",
-    "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose",
-    "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose",
+    "build": "bin/webpack.js build --config examples/basic/dvhb.config.js --verbose --app-env=development",
+    "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose --app-env=development",
+    "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose --app-env=development",
     "gh-pages": "echo \"Error: no gh-pages specified\" && exit 1",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html"
   },
