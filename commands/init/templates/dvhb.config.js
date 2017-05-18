@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     title: '<%= data.appTitle %>',
@@ -19,6 +20,13 @@ module.exports = {
         //         loader: '<loader>',
         //     }
         // );
+
+        // подключим jquery
+        webpackConfig.plugins.push(new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        }));
 
         return webpackConfig;
     }

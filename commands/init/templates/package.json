@@ -7,7 +7,7 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "@dvhb/webpack": "1.3.2",
+    "@dvhb/webpack": "1.3.3",
     "webpack": "^1.14.0"
   },
   "scripts": {
@@ -15,5 +15,8 @@
     "build": "npm run build:prod",
     "build:dev": "dvhb-webpack build --app-env=development",
     "build:prod": "dvhb-webpack build --app-env=production"
+  },
+  "dependencies": {
+    "jquery": "^1.11.0"
   }
 }

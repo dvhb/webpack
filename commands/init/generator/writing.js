@@ -5,7 +5,8 @@ module.exports = function () {
     const copyFiles = [
         '.gitignore',
         '.babelrc',
-        'LICENSE'
+        'LICENSE',
+        'src/.modernizrrc',
     ];
     const copyTemplates = [
         'package.json',
