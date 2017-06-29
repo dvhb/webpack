@@ -13,7 +13,7 @@ module.exports = function gulp(config, env, callback) {
 
     const opts = {
         env: env,
-        config: `../${argv.config}`,
+        config: argv.config ? `../${argv.config}` : null,
         'app-env': argv['app-env']
     };
 
