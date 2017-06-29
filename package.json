@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.3.3-gulp4.2",
+  "version": "1.3.3-gulp4.3",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -114,7 +114,7 @@
     "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose --app-env=development",
     "gh-pages": "echo \"Error: no gh-pages specified\" && exit 1",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html",
-    "gulp:templates": "node_modules/gulp/bin/gulp.js templates --require babel-register --gulpfile gulp/tasks --config ../examples/spa-angular/dvhb.config.js"
+    "gulp:templates": "node_modules/gulp/bin/gulp.js templates --gulpfile gulp/gulpfile.js --config ../examples/spa-angular/dvhb.config.js"
   },
   "pre-commit": "lint-staged",
   "keywords": [
