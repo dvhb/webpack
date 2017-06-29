@@ -1,53 +1,102 @@
-'use strict';
+let child = require('child_process');
+let EventEmitter = require('events').EventEmitter;
+let util = require('util');
+let path = require('path')
+let extend = require('extend');
+let decamelize = require('decamelize');
+let process = require('process');
 
-const gulpRunner = require('gulp-runner');
-const chalk = require('chalk');
-const path = require('path');
+let DEFAULTS = {
+    noColor: true
+}
 
-const minimist = require('minimist');
-const argv = minimist(process.argv.slice(2));
+function GulpRunner(gulpfile) {
+    this.gulpfile = path.resolve(gulpfile);
+}
 
-module.exports = function gulp(config, env, callback) {
+util.inherits(GulpRunner, EventEmitter)
 
-    const gulp = new gulpRunner(path.resolve(__dirname, '../gulpfile.js'));
-
-    const opts = {
-        env: env,
-        config: argv.config,
-        'app-env': argv['app-env']
-    };
-
-    gulp.on('start', function () {
-        if (config.verbose) {
-            console.log(chalk.yellow('gulp starting...'));
-        }
-    });
-
-    gulp.on('complete', function () {
-        if (config.verbose) {
-            console.log(chalk.yellow('gulp complete!'));
-        }
-
-        callback();
-    });
-
-    gulp.on('log', function (data) {
-        if (config.verbose) {
-            process.stdout.write(data);
-        }
-    });
-
-    let tasks = [
-        'default'
-    ];
-
-    if (!config.staticSite) {
-        tasks.push('templates')
+GulpRunner.prototype.run = function (tasks, options, cb) {
+    let self = this;
+    if (typeof options === 'function' && !cb) {
+        cb = options;
+        options = {}
     }
 
-    // equivalent of calling
-    // gulp tasks --env 'production' --config 'examples/static-site/dvhb.config.js'
-    gulp.run(tasks, opts, (err) => {
-        // complete!
+    if (!cb) {
+        cb = function () {
+        }
+    }
+
+    options = options || (options = {})
+    options.gulpfile = this.gulpfile;
+    tasks = util.isArray(tasks)? tasks : [tasks];
+
+    let gulpBin = require.resolve('gulp/bin/gulp.js')
+    let gulpOpts = [gulpBin].concat(buildOpts(tasks, options))
+
+    let gulp = child.spawn(process.execPath, gulpOpts, {
+        detached: true,
+        cwd: __dirname
+    })
+
+    self.emit('start');
+
+    gulp.stdout.on('data', reemit.bind(this)('log'))
+
+    gulp.stderr.on('data', reemit.bind(this)('error'))
+
+    gulp.on('close', function (code) {
+        if (code !== 0) {
+            self.emit('failed', code)
+            cb(new Error('gulp failed'))
+        } else {
+            self.emit('complete', code)
+            cb(null)
+        }
+    });
+
+    process.on('SIGINT', function () {
+        gulp.kill();
+        process.exit(1);
     });
 };
+
+function reemit(event) {
+    let self = this;
+    return function (data) {
+        self.emit(event, data);
+    }
+}
+
+function buildOpts(tasks, options) {
+    let args = []
+    let opts = extend({}, DEFAULTS, options)
+
+    args = args.concat(tasks);
+
+    Object.keys(opts).forEach(function (key) {
+        let val = opts[key];
+        if (val === true || typeof val === 'undefined') {
+            args.push(buildKey(key))
+        } else if (typeof val === 'string') {
+            args.push(buildKey(key), val)
+        } else if (val === false) {
+            args.push(buildKey(key), 'false')
+        } else if (util.isArray(val)) {
+            val.forEach(function (v) {
+                args.push(buildKey(key), v);
+            })
+        } else if (val != null && !util.isArray(val) && Object.keys(val).length) {
+            throw new Error("Can't pass complex objects to `options`.")
+        }
+    })
+
+    return args;
+}
+
+function buildKey(key) {
+    return '--' + decamelize(key, '-');
+}
+
+module.exports = GulpRunner;

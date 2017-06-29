@@ -2,7 +2,7 @@
 
 const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
-const gulpRunner = require('../gulp/gulp-runner');
+const gulp = require('../gulp');
 const colorsSupported = require('supports-color');
 
 module.exports = function build(config, callback) {
@@ -17,7 +17,7 @@ module.exports = function build(config, callback) {
             errorDetails: true
         }));
 
-        gulpRunner(config, env, () => {
+        gulp(config, env, () => {
             callback(err, stats);
         })
     });
