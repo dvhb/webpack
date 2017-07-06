@@ -10,7 +10,6 @@ const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssSVG = require('postcss-svg');
@@ -68,7 +67,6 @@ module.exports = function (config, env) {
     process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
     const isProd = env === 'production';
-    const gitRevisionPlugin = new GitRevisionPlugin();
 
     let webpackConfig = {
         loader: {
@@ -94,10 +92,8 @@ module.exports = function (config, env) {
         plugins: [
             new webpack.DefinePlugin({
                 'process.env': {
-                    NODE_ENV: JSON.stringify(env),
-                },
-                'VERSION': JSON.stringify(gitRevisionPlugin.version()),
-                'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+                    NODE_ENV: JSON.stringify(env)
+                }
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
@@ -112,8 +108,7 @@ module.exports = function (config, env) {
             new ChunkManifestPlugin({
                 filename: 'chunk-manifest.json',
                 manifestVariable: 'webpackManifest'
-            }),
-            new GitRevisionPlugin()
+            })
         ],
         module: {
             loaders: [
@@ -140,9 +135,9 @@ module.exports = function (config, env) {
                         prefixize: false
                     }) + '!svgo?' + JSON.stringify({
                         plugins: [
-                            {removeTitle: true},
-                            {convertColors: {shorthex: false}},
-                            {convertPathData: false}
+                            { removeTitle: true },
+                            { convertColors: { shorthex: false } },
+                            { convertPathData: false }
                         ]
                     })
                 },
@@ -164,6 +159,21 @@ module.exports = function (config, env) {
             configFile: config.eslintrc
         }
     };
+
+    if (utils.isGitExists(config.configDir)) {
+        const GitRevisionPlugin = require('git-revision-webpack-plugin');
+        const gitRevisionPlugin = new GitRevisionPlugin();
+
+        webpackConfig = merge(webpackConfig, {
+            plugins: [
+                new webpack.DefinePlugin({
+                    'VERSION': JSON.stringify(gitRevisionPlugin.version()),
+                    'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+                }),
+                new GitRevisionPlugin()
+            ]
+        });
+    }
 
     // add modernizr
     if (utils.isFileExists(config.modernizrrc)) {
