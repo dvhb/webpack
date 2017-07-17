@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "scripts/index.js",
   "bin": {
-    "dvhb-webpack": "bin/webpack.js"
+    "dvhb-webpack": "bin/dvhb-webpack.js"
   },
   "files": [
     "docs",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@dvhb/eslint-config": "*",
+    "ascii-art": "^1.4.2",
     "autoprefixer": "^6.7.4",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

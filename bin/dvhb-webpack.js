@@ -10,9 +10,13 @@ const getConfig = require('../scripts/config');
 const consts = require('../scripts/consts');
 const DvhbWebpackError = require('../scripts/utils/error');
 const argv = minimist(process.argv.slice(2));
+const utils = require('../scripts/utils/utils');
 
 const yeoman = require('yeoman-environment');
 const path = require('path');
+
+//project logo
+console.log(utils.getProjectLogo());
 
 switch (argv._[0]) {
     case 'build':
@@ -85,7 +89,7 @@ function commandInit() {
     env.run(`dvhb:init`, done);
 }
 
-function loadConfig(options){
+function loadConfig(options) {
     let config;
     try {
         config = getConfig(options);
@@ -110,7 +114,7 @@ function commandHelp() {
     console.log([
         chalk.underline('Usage'),
         '',
-        '    ' + chalk.bold('@dvhb/webpack') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
+        '    ' + chalk.bold('dvhb-webpack') + ' ' + chalk.cyan('<command>') + ' ' + chalk.yellow('[<options>]'),
         '',
         chalk.underline('Commands'),
         '',
