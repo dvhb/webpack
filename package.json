@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.3.6-webpack3.2",
+  "version": "1.3.7",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
