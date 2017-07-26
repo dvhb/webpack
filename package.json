@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.3.6",
+  "version": "1.3.6-webpack3.1",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "scripts/index.js",
   "bin": {
-    "dvhb-webpack": "bin/dvhb-webpack.js"
+    "dvhb-webpack": "bin/webpack.js"
   },
   "files": [
     "docs",
@@ -41,21 +41,20 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.24.1",
     "chalk": "1.1.3",
-    "chunk-manifest-webpack-plugin": "0.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "csso-loader": "^0.2.1",
     "eslint": "^3.16.1",
-    "eslint-loader": "^1.6.3",
+    "eslint-loader": "^1.9.0",
     "express": "^4.14.1",
     "express-pug": "^1.0.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
     "findup": "^0.1.5",
-    "git-revision-webpack-plugin": "^2.4.1",
+    "git-revision-webpack-plugin": "^2.5.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-filter": "^5.0.0",
     "gulp-pug": "^3.2.0",
-    "html-webpack-plugin": "^2.28.0",
+    "html-webpack-plugin": "^2.29.0",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
     "minimatch": "^3.0.2",
@@ -77,25 +76,22 @@
     "supports-color": "^3.2.3",
     "svg-sprite-loader": "^0.3.0",
     "svgo-loader": "^1.2.0",
-    "webpack-cleanup-plugin": "^0.4.2",
+    "webpack-cleanup-plugin": "^0.5.1",
     "webpack-config-loader": "^0.1.0",
-    "webpack-dev-middleware": "1.8.4",
-    "webpack-hot-middleware": "2.13.1",
-    "webpack-manifest-plugin": "^1.1.0",
-    "webpack-md5-hash": "0.0.5",
-    "webpack-merge": "0.15.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.2",
+    "webpack-manifest-plugin": "^1.2.1",
+    "webpack-md5-hash": "^0.0.5",
+    "webpack-merge": "^4.1.0",
     "yeoman-environment": "1.6.3",
     "yeoman-generator": "0.24.1"
-  },
-  "peerDependencies": {
-    "webpack": "1"
   },
   "devDependencies": {
     "cross-env": "~3.1.3",
     "gh-pages": "~0.11.0",
     "lint-staged": "~3.2.5",
     "mock-require": "~1.3.0",
-    "webpack": "1.13.3",
+    "webpack": "^3.4.1",
     "yeoman-test": "^1.5.0"
   },
   "scripts": {
