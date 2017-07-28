@@ -74,7 +74,11 @@ function commandServer() {
         }
         else {
             console.log(`Server started at ${chalk.bold(config.env)} mode:`);
-            console.log(chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
+            console.log('Local:          ', chalk.underline('http://' + config.serverHost + ':' + config.serverPort));
+
+            if (config.serverHostNetwork && config.env == 'development') {
+                console.log('On Your Network:', chalk.underline('http://' + config.serverHostNetwork + ':' + config.serverPort));
+            }
             console.log();
         }
     });

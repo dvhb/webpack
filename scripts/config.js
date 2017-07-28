@@ -28,6 +28,7 @@ const DEFAULT_CONFIG = {
     spa: false,
     staticSite: false,
     serverHost: 'localhost',
+    serverHostNetwork: null,
     serverPort: 3000,
     verbose: false,
     extendWebpackConfig: null,
@@ -106,6 +107,8 @@ function getConfig(options) {
     if (options.port) {
         config.serverPort = options.port
     }
+
+    config.serverHostNetwork = utils.getNetworkIp();
 
     if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
         config.eslintrc = path.resolve(configDir, config.eslintrc)
