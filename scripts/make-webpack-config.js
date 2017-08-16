@@ -102,7 +102,14 @@ module.exports = function (config, env) {
                                 config.svgInlineDir
                             ]
                         })
-                    ]
+                    ],
+                    svgoConfig: {
+                        plugins: [
+                            { removeTitle: true },
+                            { convertColors: { shorthex: false } },
+                            { convertPathData: false }
+                        ]
+                    }
                 }
             }),
             new webpack.LoaderOptionsPlugin({
@@ -149,13 +156,7 @@ module.exports = function (config, env) {
                             name: '[name]',
                             prefixize: false
                         }),
-                        'svgo?' + JSON.stringify({
-                            plugins: [
-                                { removeTitle: true },
-                                { convertColors: { shorthex: false } },
-                                { convertPathData: false }
-                            ]
-                        })
+                        'svgo?useConfig=svgoConfig'
                     ]
                 },
             ],
