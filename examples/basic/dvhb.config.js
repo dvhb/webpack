@@ -2,7 +2,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 
 module.exports = {
-  title: 'Webpack Starter kit basic example',
+  title: '@dvhb/webpack',
 
   extendWebpackConfig(webpackConfig, env) {
     const dir = path.resolve(__dirname, 'src');
