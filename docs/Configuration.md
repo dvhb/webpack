@@ -2,118 +2,136 @@
 
 You can change settings in the `dvhb.config.js` file in your project’s root folder.
 
-* **`title`**<br>
-  Type: `String`, default: `Dvhb Webpack Starter kit`<br>
-  Title for index.html.
+## `title`
+Type: `String`, default: `Dvhb Webpack Starter kit`
 
-* **`sourceDir`**<br>
-  Type: `String`, default: `src`<br>
-  Folder for source code.
+Title for index.html.
 
-* **`distDir`**<br>
-  Type: `String`, default: `dist`<br>
-  The output directory.
+## `sourceDir`
+Type: `String`, default: `src`
 
-* **`publicPath`**<br>
-  Type: `String`, default: `/`<br>
-  Public path for assets.
+Folder for source code.
 
-* **`viewsDir`**<br>
-  Type: `String`, default: `src/views`<br>
-  Folder for `pug` templates.
+## `distDir`
+Type: `String`, default: `dist`
 
-* **`staticSite`**<br>
-  Type: `Boolean`, default: `false`<br>
-  Enable static site mode with express server.
+The output directory.
 
-* **`assetsDir`**<br>
-  Type: `String` or `Array`, optional<br>
-  Your application static assets folder, will be accessible as `/` in the dev-server or prod-server.
+## `publicPath`
+Type: `String`, default: `/`
 
-* **`serverHost`**<br>
-  Type: `String`, default: `localhost`<br>
-  Dev server host name.
+Public path for assets.
 
-* **`serverPort`**<br>
-  Type: `Number`, default: `3000`<br>
-  Dev server port.
+## `viewsDir`
+Type: `String`, default: `src/views`
 
-* **`eslintrc`**<br>
-  Type: `String`, default: `.eslintrc`<br>
-  Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).<br>
-  You can use your own eslint config if exists `<project_dir>/.eslintrc`.
+Folder for `pug` templates.
 
-* **`modernizrrc`**<br>
-  Type: `String`, default: `src/.modernizrrc`<br>
-  Use modernizer in application.
+## `staticSite`
+Type: `Boolean`, default: `false`
 
-* **`templateVars`**<br>
-  Type: `Object`, default: `{}`<br>
-  Template global vars, useful for google analitics and other specific data.
+Enable static site mode with express server.
 
-* **`spa`**<br>
-  Type: `String`, default: `false`<br>
-  Use spa routing with html5mode.
+## `assetsDir`
+Type: `String` or `Array`, optional
 
-* **`extendEntries`**<br>
-  Type: `Object`<br>
-  Extend app entries. Example for `src/extEntry.js`:
+Your application static assets folder, will be accessible as `/` in the dev-server or prod-server.
 
-  ```javascript
-  module.exports = {
-    // ...
-    extendEntries: {
-      extEntry: 'extEntry'
-    },
-  };
-  ```
+## `serverHost`
+Type: `String`, default: `localhost`
 
-* **`extendWebpackConfig`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to extend Webpack config:
+Development server host name.
 
-  ```javascript
-  module.exports = {
-    // ...
-    extendWebpackConfig(webpackConfig, env) {
-      const dir = path.resolve(__dirname, 'src');
+## `serverHost`
+Type: `Number`, default: `3000`
 
-      // @see https://webpack.js.org/configuration/
-      const commonConfig = merge(webpackConfig, {
-        module: {
-          rules: [
-            {
-              test: /\.<extention>?$/,
-              include: dir,
-              loader: '<loader>',
-            }
-          ],
-        },
+Dev server port.
 
-        plugins: []
-      });
+## `eslintrc`
+Type: `String`, default: `.eslintrc`
 
-      const productionConfig = merge({});
+Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).
 
-      const developmentConfig = merge({});
+You can use your own eslint config if exists `<project_dir>/.eslintrc`
 
-      return (env === 'production')? merge(commonConfig, productionConfig) : merge(commonConfig, developmentConfig);
-    }
-  };
-  ```
+## `modernizrrc`
+Type: `String`, default: `src/.modernizrrc`
 
-* **`configureServer`**<br>
-  Type: `Function`, optional<br>
-  Function that allows you to add endpoints to the underlying `express` server:
+Use modernizer in application.
 
-  ```javascript
-  module.exports = {
-    // ...
-    configureServer(app) {
-       // `app` is the instance of the express server running dvhb-webpack
-    	app.get('/custom-endpoint', (req, res) => {
-			  res.status(200).send({ response: 'Server invoked' });
-		  });
-    },
-  };
-  ```
+## `templateVars`
+Type: `Object`, default: `{}`
+
+Template global vars, useful for google analitics and other specific data.
+
+## `spa`
+Type: `String`, default: `false`
+
+Use spa routing with html5mode.
+
+## `extendEntries`
+Type: `Object`
+
+Extend app entries. Example for `src/extEntry.js`:
+
+```javascript
+module.exports = {
+  // ...
+  extendEntries: {
+    extEntry: 'extEntry'
+  },
+};
+```
+
+
+## `extendWebpackConfig`
+Type: `Function`, optional
+
+Function that allows you to extend Webpack config:
+
+```javascript
+module.exports = {
+  // ...
+  extendWebpackConfig(webpackConfig, env) {
+    const dir = path.resolve(__dirname, 'src');
+
+    // @see https://webpack.js.org/configuration/
+    const commonConfig = merge(webpackConfig, {
+      module: {
+        rules: [
+          {
+            test: /\.<extention>?$/,
+            include: dir,
+            loader: '<loader>',
+          }
+        ],
+      },
+
+      plugins: []
+    });
+
+    const productionConfig = merge({});
+
+    const developmentConfig = merge({});
+
+    return (env === 'production')? merge(commonConfig, productionConfig) : merge(commonConfig, developmentConfig);
+  }
+};
+```
+
+## `configureServer`
+Type: `Function`, optional
+
+Function that allows you to add endpoints to the underlying `express` server:
+
+```javascript
+module.exports = {
+  // ...
+  configureServer(app) {
+     // `app` is the instance of the express server running dvhb-webpack
+    app.get('/custom-endpoint', (req, res) => {
+      res.status(200).send({ response: 'Server invoked' });
+    });
+  },
+};
+```

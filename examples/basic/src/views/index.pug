@@ -1,13 +1,58 @@
 extends _partials/layout
 
+block extra_styles
+    link(rel="stylesheet" href="//rawgit.com/dvhbru/themes/master/dist/main.css")
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/atom-one-dark.min.css")
+
+block extra_scripts
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js")
+    script.
+        hljs.initHighlightingOnLoad();
+
 block vars
     - var title = 'Index'
 
 block content
-    h1 Index
 
-    .avatar
+    .b-usage.b-content.textLg
 
-    br
+        | <a href="https://github.com/dvhbru/webpack" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 
-    img(src='/img/avatar.png', alt='Avatar', width='24px', height='24px')
+        .section
+            h1 @dvhb/webpack
+
+            .form-group.form-group_marginSm
+                .textLg
+
+            p Build tool with zero initial configuration
+
+            p Just use
+                nobr.textGreen &nbsp;dvhb-webpack init&nbsp;
+                | for create and develop new project.
+
+            .textLg Features
+
+            .list
+                .list__item Webpack 3
+                .list__item Babel, ES2015 + modules, Stage 0 preset
+                .list__item Optional static views with pug template engine (for static websites)
+
+
+    .b-content.textLg
+        .section
+            h2 Quick Overview
+            p.textGreen npm i @dvhb/webpack -g
+            p.textGreen mkdir my-app && cd my-app
+            p.textGreen dvhb-webpack init
+
+    .b-usage.b-content
+        .section
+            include:markdown-it ../../node_modules/@dvhb/webpack/docs/Configuration.md
+
+
+    .b-content.b-content
+        .section
+
+            h2 License
+
+            .textLg <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT License</a> © <a href="https://dvhb.ru" target="_blank">dvhb</a>
