@@ -4,6 +4,8 @@ module.exports = function () {
     const copyDirs = ['src'];
     const copyFiles = [
         '.gitignore',
+        '.editorconfig',
+        '.eslintignore',
         '.babelrc',
         'LICENSE',
         'src/.modernizrrc',
