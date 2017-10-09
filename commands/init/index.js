@@ -7,8 +7,8 @@ const writing = require('./generator/writing');
 const prompting = require('./generator/prompting');
 
 module.exports = Base.extend({
-    init,
-    prompting,
-    writing,
-    install
+  init,
+  prompting,
+  writing,
+  install
 });

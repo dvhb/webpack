@@ -76,11 +76,29 @@ You can change settings in the `dvhb.config.js` file in your project’s root fo
   module.exports = {
     // ...
     extendWebpackConfig(webpackConfig, env) {
-      if (env === 'development') {
-        // Extend config...
-      }
-      return webpackConfig;
-    },
+      const dir = path.resolve(__dirname, 'src');
+
+      // @see https://webpack.js.org/configuration/
+      const commonConfig = merge(webpackConfig, {
+        module: {
+          rules: [
+            {
+              test: /\.<extention>?$/,
+              include: dir,
+              loader: '<loader>',
+            }
+          ],
+        },
+
+        plugins: []
+      });
+
+      const productionConfig = merge({});
+
+      const developmentConfig = merge({});
+
+      return (env === 'production')? merge(commonConfig, productionConfig) : merge(commonConfig, developmentConfig);
+    }
   };
   ```
 

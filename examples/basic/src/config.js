@@ -14,13 +14,13 @@
  *   console.log(config.apiBaseUrl);
  */
 module.exports = {
-    development: {
-        appEnv: 'development',
-    },
-    staging: {
-        appEnv: 'staging',
-    },
-    production: {
-        appEnv: 'production',
-    }
+  development: {
+    appEnv: 'development',
+  },
+  staging: {
+    appEnv: 'staging',
+  },
+  production: {
+    appEnv: 'production',
+  }
 };

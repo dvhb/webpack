@@ -6,5 +6,5 @@ const gulp = require('gulp');
 requireDir('./tasks');
 
 gulp.task('default', function (cb) {
-    return cb()
+  return cb()
 });

@@ -16,40 +16,40 @@ const DvhbWebpackError = require('./utils/error');
 
 const CONFIG_FILENAME = 'dvhb.config.js';
 const DEFAULT_CONFIG = {
-    title: 'Dvhb Webpack Starter kit',
-    extendEntries: null,
-    sourceDir: 'src',
-    assetsDir: null,
-    svgSpriteDir: 'src/assets/svg-sprite',
-    svgInlineDir: 'src/assets/svg-inline',
-    distDir: 'dist',
-    publicPath: '/',
-    viewsDir: 'src/views',
-    spa: false,
-    staticSite: false,
-    serverHost: 'localhost',
-    serverHostNetwork: null,
-    serverPort: 3000,
-    verbose: false,
-    extendWebpackConfig: null,
-    eslintrc: '.eslintrc',
-    modernizrrc: 'src/.modernizrrc',
-    templateVars: {},
-    appEnv: null // experimental option
+  title: 'Dvhb Webpack Starter kit',
+  extendEntries: null,
+  sourceDir: 'src',
+  assetsDir: null,
+  svgSpriteDir: 'src/assets/svg-sprite',
+  svgInlineDir: 'src/assets/svg-inline',
+  distDir: 'dist',
+  publicPath: '/',
+  viewsDir: 'src/views',
+  spa: false,
+  staticSite: false,
+  serverHost: 'localhost',
+  serverHostNetwork: null,
+  serverPort: 3000,
+  verbose: false,
+  extendWebpackConfig: null,
+  eslintrc: '.eslintrc',
+  modernizrrc: 'src/.modernizrrc',
+  templateVars: {},
+  appEnv: null // experimental option
 };
 const DEPENDENCIES = [
-    {
-        package: 'babel-core',
-        name: 'Babel',
-        from: 6,
-        to: 6,
-    },
-    {
-        package: 'webpack',
-        name: 'Webpack',
-        from: 1,
-        to: 2,
-    },
+  {
+    package: 'babel-core',
+    name: 'Babel',
+    from: 6,
+    to: 6,
+  },
+  {
+    package: 'webpack',
+    name: 'Webpack',
+    from: 1,
+    to: 2,
+  },
 ];
 
 /**
@@ -59,71 +59,71 @@ const DEPENDENCIES = [
  * @returns {object}
  */
 function getConfig(options) {
-    options = options || {};
+  options = options || {};
 
-    let configFilepath;
-    let config;
+  let configFilepath;
+  let config;
 
-    // Read config options from a file
-    configFilepath = findConfig(options.config);
-    config = require(configFilepath);
+  // Read config options from a file
+  configFilepath = findConfig(options.config);
+  config = require(configFilepath);
 
-    validateConfig(config);
+  validateConfig(config);
 
-    const configDir = configFilepath ? path.dirname(configFilepath) : process.cwd();
+  const configDir = configFilepath? path.dirname(configFilepath) : process.cwd();
 
-    validateDependencies(configDir);
+  validateDependencies(configDir);
 
-    let assetsDir = null;
-    if (typeof config.assetsDir === 'string') {
-        assetsDir = path.resolve(configDir, config.assetsDir);
-        if (!utils.isDirectoryExists(assetsDir)) {
-            throw new DvhbWebpackError('DvhbWebpack: "assetsDir" directory not found: ' + assetsDir);
-        }
+  let assetsDir = null;
+  if (typeof config.assetsDir === 'string') {
+    assetsDir = path.resolve(configDir, config.assetsDir);
+    if (!utils.isDirectoryExists(assetsDir)) {
+      throw new DvhbWebpackError('DvhbWebpack: "assetsDir" directory not found: ' + assetsDir);
     }
-    if (Array.isArray(config.assetsDir)) {
-        assetsDir = [];
-        config.assetsDir.forEach(function (dir) {
-            assetsDir.push(path.resolve(configDir, dir));
-        });
-    }
-
-
-    config = merge({}, DEFAULT_CONFIG, config);
-    config = merge({}, config, {
-        appEnv: options['app-env'],
-        env: options.env || 'development',
-        verbose: !!options.verbose,
-        sourceDir: path.resolve(configDir, config.sourceDir),
-        distDir: path.resolve(configDir, config.distDir),
-        viewsDir: path.resolve(configDir, config.viewsDir),
-        svgSpriteDir: path.resolve(configDir, config.svgSpriteDir),
-        svgInlineDir: path.resolve(configDir, config.svgInlineDir),
-        assetsDir: assetsDir,
-        modernizrrc: path.resolve(configDir, config.modernizrrc),
-        configDir,
+  }
+  if (Array.isArray(config.assetsDir)) {
+    assetsDir = [];
+    config.assetsDir.forEach(function (dir) {
+      assetsDir.push(path.resolve(configDir, dir));
     });
+  }
 
-    if (options.port) {
-        config.serverPort = options.port
-    }
 
-    config.serverHostNetwork = utils.getNetworkIp();
+  config = merge({}, DEFAULT_CONFIG, config);
+  config = merge({}, config, {
+    appEnv: options['app-env'],
+    env: options.env || 'development',
+    verbose: !!options.verbose,
+    sourceDir: path.resolve(configDir, config.sourceDir),
+    distDir: path.resolve(configDir, config.distDir),
+    viewsDir: path.resolve(configDir, config.viewsDir),
+    svgSpriteDir: path.resolve(configDir, config.svgSpriteDir),
+    svgInlineDir: path.resolve(configDir, config.svgInlineDir),
+    assetsDir: assetsDir,
+    modernizrrc: path.resolve(configDir, config.modernizrrc),
+    configDir,
+  });
 
-    if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
-        config.eslintrc = path.resolve(configDir, config.eslintrc)
-    } else {
-        config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
-    }
+  if (options.port) {
+    config.serverPort = options.port
+  }
 
-    if (config.verbose) {
-        console.log();
-        console.log('Using config file:', configFilepath);
-        console.log(prettyjson.render(config));
-        console.log();
-    }
+  config.serverHostNetwork = utils.getNetworkIp();
 
-    return config;
+  if (fs.existsSync(path.resolve(configDir, config.eslintrc))) {
+    config.eslintrc = path.resolve(configDir, config.eslintrc)
+  } else {
+    config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
+  }
+
+  if (config.verbose) {
+    console.log();
+    console.log('Using config file:', configFilepath);
+    console.log(prettyjson.render(config));
+    console.log();
+  }
+
+  return config;
 }
 
 /**
@@ -133,28 +133,28 @@ function getConfig(options) {
  * @return {string} Config absolute file path.
  */
 function findConfig(file) {
-    if (file) {
-        // Custom config location
+  if (file) {
+    // Custom config location
 
-        const configFilepath = file[0] === '/' ? file : path.join(process.cwd(), file);
-        if (!fs.existsSync(configFilepath)) {
-            throw new DvhbWebpackError('DvhbWebpack config not found: ' + configFilepath + '.');
-        }
-
-        return configFilepath;
+    const configFilepath = file[0] === '/'? file : path.join(process.cwd(), file);
+    if (!fs.existsSync(configFilepath)) {
+      throw new DvhbWebpackError('DvhbWebpack config not found: ' + configFilepath + '.');
     }
 
-    // Search config file in all parent directories
+    return configFilepath;
+  }
 
-    let configDir;
-    try {
-        configDir = findup.sync(__dirname, CONFIG_FILENAME);
-    }
-    catch (exception) {
-        throw new DvhbWebpackError('DvhbWebpack config not found: ' + CONFIG_FILENAME + '.');
-    }
+  // Search config file in all parent directories
 
-    return path.join(configDir, CONFIG_FILENAME);
+  let configDir;
+  try {
+    configDir = findup.sync(__dirname, CONFIG_FILENAME);
+  }
+  catch (exception) {
+    throw new DvhbWebpackError('DvhbWebpack config not found: ' + CONFIG_FILENAME + '.');
+  }
+
+  return path.join(configDir, CONFIG_FILENAME);
 }
 
 /**
@@ -163,9 +163,9 @@ function findConfig(file) {
  * @param {Object} config Config options.
  */
 function validateConfig(config) {
-    if (config.extendWebpackConfig && typeof config.extendWebpackConfig !== 'function') {
-        throw new DvhbWebpackError('DvhbWebpack: "extendWebpackConfig" option must be a function.');
-    }
+  if (config.extendWebpackConfig && typeof config.extendWebpackConfig !== 'function') {
+    throw new DvhbWebpackError('DvhbWebpack: "extendWebpackConfig" option must be a function.');
+  }
 }
 
 /**
@@ -174,9 +174,9 @@ function validateConfig(config) {
  * @param {string} configDir Config file directory.
  */
 function validateDependencies(configDir) {
-    const packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
-    const packageJson = require(packageJsonPath);
-    DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
+  const packageJsonPath = path.join(findup.sync(configDir, 'package.json'), 'package.json');
+  const packageJson = require(packageJsonPath);
+  DEPENDENCIES.forEach(validateDependency.bind(null, packageJson));
 }
 
 /**
@@ -186,31 +186,31 @@ function validateDependencies(configDir) {
  * @param {Object} dependency Dependency details.
  */
 function validateDependency(packageJson, dependency) {
-    const version = findDependency(dependency.package, packageJson);
-    if (!version) {
-        return;
-    }
+  const version = findDependency(dependency.package, packageJson);
+  if (!version) {
+    return;
+  }
 
-    let major;
-    try {
-        major = semverUtils.parseRange(version)[0].major;
-    }
-    catch (exception) {
-        console.log('DvhbWebpack: cannot parse ' + dependency.name + ' version which is "' + version + '".');
-        console.log('DvhbWebpack might not work properly. Please report this issue at ' + consts.BUGS_URL);
-        console.log();
-    }
+  let major;
+  try {
+    major = semverUtils.parseRange(version)[0].major;
+  }
+  catch (exception) {
+    console.log('DvhbWebpack: cannot parse ' + dependency.name + ' version which is "' + version + '".');
+    console.log('DvhbWebpack might not work properly. Please report this issue at ' + consts.BUGS_URL);
+    console.log();
+  }
 
-    if (major < dependency.from) {
-        throw new DvhbWebpackError('DvhbWebpack: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
-            'you are using version ' + major + '.');
-    }
-    else if (major > dependency.to) {
-        console.log('DvhbWebpack: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
-            'you are using version ' + major + '.');
-        console.log('DvhbWebpack might not work properly, report bugs at ' + consts.BUGS_URL);
-        console.log();
-    }
+  if (major < dependency.from) {
+    throw new DvhbWebpackError('DvhbWebpack: ' + dependency.name + ' ' + dependency.from + ' is required, ' +
+      'you are using version ' + major + '.');
+  }
+  else if (major > dependency.to) {
+    console.log('DvhbWebpack: ' + dependency.name + ' is supported up to version ' + dependency.to + ', ' +
+      'you are using version ' + major + '.');
+    console.log('DvhbWebpack might not work properly, report bugs at ' + consts.BUGS_URL);
+    console.log();
+  }
 }
 
 /**
@@ -221,13 +221,13 @@ function validateDependency(packageJson, dependency) {
  * @returns {string}
  */
 function findDependency(name, packageJson) {
-    if (packageJson.dependencies && packageJson.dependencies[name]) {
-        return packageJson.dependencies[name];
-    }
-    if (packageJson.devDependencies && packageJson.devDependencies[name]) {
-        return packageJson.devDependencies[name];
-    }
-    return null;
+  if (packageJson.dependencies && packageJson.dependencies[name]) {
+    return packageJson.dependencies[name];
+  }
+  if (packageJson.devDependencies && packageJson.devDependencies[name]) {
+    return packageJson.devDependencies[name];
+  }
+  return null;
 }
 
 module.exports = getConfig;

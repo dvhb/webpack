@@ -1,18 +1,31 @@
 const path = require('path');
+const merge = require('webpack-merge');
 
 module.exports = {
-    title: 'Webpack Starter kit basic example',
+  title: 'Webpack Starter kit basic example',
 
-    extendWebpackConfig(webpackConfig) {
-        const dir = path.resolve(__dirname, 'src');
+  extendWebpackConfig(webpackConfig, env) {
+    const dir = path.resolve(__dirname, 'src');
 
-        // webpackConfig.module.rules.push(
-        //     {
-        //         test: /\.<extention>?$/,
-        //         include: dir,
-        //         loader: '<loader>',
-        //     }
-        // );
-        return webpackConfig;
-    },
+    // @see https://webpack.js.org/configuration/
+    const commonConfig = merge(webpackConfig, {
+      module: {
+        rules: [
+          // {
+          //   test: /\.<extention>?$/,
+          //   include: dir,
+          //   loader: '<loader>',
+          // }
+        ],
+      },
+
+      plugins: []
+    });
+
+    const productionConfig = merge({});
+
+    const developmentConfig = merge({});
+
+    return (env === 'production')? merge(commonConfig, productionConfig) : merge(commonConfig, developmentConfig);
+  },
 };
