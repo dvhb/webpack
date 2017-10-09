@@ -18,5 +18,3 @@ indent_size = 2
 
 [*.styl]
 indent_size = 4
-trim_trailing_whitespace = false
-insert_final_newline = false
