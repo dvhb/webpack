@@ -91,6 +91,9 @@ Function that allows you to extend Webpack config:
 
 ```javascript
 module.exports = {
+  const merge = require('webpack-merge');
+  const path = require('path');
+
   // ...
   extendWebpackConfig(webpackConfig, env) {
     const dir = path.resolve(__dirname, 'src');

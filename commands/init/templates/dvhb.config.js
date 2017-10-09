@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 
 module.exports = {
   title: '<%= data.appTitle %>',
@@ -26,12 +27,12 @@ module.exports = {
       },
 
       plugins: [
-        {
+        new webpack.ProvidePlugin({
           _: 'lodash',
           $: 'jquery',
           jQuery: 'jquery',
           'window.jQuery': 'jquery'
-        }
+        }),
       ]
     });
 
