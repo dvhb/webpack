@@ -70,7 +70,7 @@ Type: `String`, default: `false`
 Use spa routing with html5mode.
 
 ## `extendEntries`
-Type: `Object`
+Type: `Object`, optional
 
 Extend app entries. Example for `src/extEntry.js`:
 
@@ -95,6 +95,12 @@ module.exports = {
   const path = require('path');
 
   // ...
+  /**
+   * Extend webpack configuration
+   *
+   * @param webpackConfig {Object} – webpack config
+   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   */
   extendWebpackConfig(webpackConfig, env) {
     const dir = path.resolve(__dirname, 'src');
 
@@ -130,11 +136,19 @@ Function that allows you to add endpoints to the underlying `express` server:
 ```javascript
 module.exports = {
   // ...
-  configureServer(app) {
-     // `app` is the instance of the express server running dvhb-webpack
+  /**
+   * Extend express server behavior
+   *
+   * @param app – instance of the express server running dvhb-webpack
+   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   */
+  configureServer(app, env) {
     app.get('/custom-endpoint', (req, res) => {
       res.status(200).send({ response: 'Server invoked' });
     });
+
+    // use items variable in templates
+    app.locals.items = require('./src/items.json');
   },
 };
 ```

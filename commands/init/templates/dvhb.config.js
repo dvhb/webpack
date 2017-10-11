@@ -11,6 +11,12 @@ module.exports = {
     }
   },
 
+  /**
+   * Extend webpack configuration
+   *
+   * @param webpackConfig {Object} – webpack config
+   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   */
   extendWebpackConfig(webpackConfig, env) {
     const dir = path.resolve(__dirname, 'src');
 
@@ -41,5 +47,16 @@ module.exports = {
     const developmentConfig = merge({});
 
     return (env === 'production')? merge(commonConfig, productionConfig) : merge(commonConfig, developmentConfig);
+  },
+
+  /**
+   * Extend express server behavior
+   *
+   * @param app – instance of the express server running dvhb-webpack
+   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   */
+  configureServer(app, env) {
+    // use items variable in templates
+    // app.locals.items = require('./src/items.json');
   },
 };
