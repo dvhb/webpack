@@ -17,9 +17,6 @@ Specify path to the config file.
 ## `--verbose`
 Print debug information.
 
-## `--config <file>`
-Specify path to the config file.
-
 ## `--port`
 Server port, default: `3000`.
 
@@ -28,3 +25,8 @@ Environment, default: `development`.
 
 ## `--app-env`
 Application environment, _experimental option_.
+
+# ENV variables
+
+## `ASSET_PATH="https://mysite.com/folder/"`
+Specify webpack publicPath. See [ publicPath docs](https://webpack.js.org/guides/public-path/)

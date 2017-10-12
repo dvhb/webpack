@@ -64,13 +64,16 @@ function getEntries(config, env) {
 module.exports = function (config, env) {
   process.env.NODE_ENV = process.env.BABEL_ENV = env;
 
+  // Try the environment variable, otherwise use root
+  const publicPath = process.env.ASSET_PATH || config.publicPath;
+
   const isProd = env === 'production';
 
   let webpackConfig = {
     output: {
       path: config.distDir,
       filename: '[name].js',
-      publicPath: config.publicPath
+      publicPath: publicPath
     },
     resolveLoader: {
       moduleExtensions: ['-loader', '.loader'],
@@ -128,7 +131,12 @@ module.exports = function (config, env) {
       }),
       new WebpackMd5Hash(),
       new ManifestPlugin({
-        basePath: config.publicPath
+        publicPath: publicPath
+      }),
+
+      // This makes it possible for us to safely use env vars on our code
+      new webpack.DefinePlugin({
+        'process.env.ASSET_PATH': JSON.stringify(publicPath)
       })
     ],
     module: {
