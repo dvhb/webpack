@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -50,9 +50,9 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "findup": "^0.1.5",
     "git-revision-webpack-plugin": "^2.4.1",
-    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-filter": "^5.0.0",
     "gulp-pug": "^3.2.0",
+    "gulp4": "^4.0.2",
     "html-webpack-plugin": "^2.29.0",
     "ip": "^1.1.5",
     "json-loader": "^0.5.4",
@@ -111,7 +111,7 @@
     "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose --app-env=development",
     "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose --app-env=development",
     "gh-pages": "gh-pages -d examples/basic/dist",
-    "pregh-pages": "npm run build",
+    "pregh-pages": "ASSET_PATH=\"https://dvhbru.github.io/webpack/\" npm run build",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html",
     "gulp:templates": "node_modules/gulp/bin/gulp.js templates --gulpfile gulp/gulpfile.js --config ../examples/spa-angular/dvhb.config.js"
   },

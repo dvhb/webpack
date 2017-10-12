@@ -29,4 +29,4 @@ Application environment, _experimental option_.
 # ENV variables
 
 ## `ASSET_PATH="https://mysite.com/folder/"`
-Specify webpack publicPath. See [ publicPath docs](https://webpack.js.org/guides/public-path/)
+Specify webpack publicPath. See [publicPath docs](https://webpack.js.org/guides/public-path/)
