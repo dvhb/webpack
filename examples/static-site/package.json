@@ -13,7 +13,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@dvhb/webpack": "1.4.7"
+    "@dvhb/webpack": "1.4.9"
   },
   "scripts": {
     "prestart": "npm run build",

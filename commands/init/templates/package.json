@@ -7,7 +7,7 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "@dvhb/webpack": "1.4.8"
+    "@dvhb/webpack": "1.4.9"
   },
   "scripts": {
     "dev": "dvhb-webpack server",
