@@ -15,6 +15,7 @@ module.exports = function gulp(config, env, callback) {
   let opts = _.merge({}, argv);
   delete opts._;
 
+  opts.env = env;
   opts.config = opts.config? `../${opts.config}` : null;
 
   gulp.on('start', function () {
