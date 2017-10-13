@@ -79,7 +79,7 @@ function buildOpts(tasks, options) {
     let val = opts[key];
     if (val === true || typeof val === 'undefined') {
       args.push(buildKey(key))
-    } else if (typeof val === 'string') {
+    } else if (typeof val === 'string' || typeof val === 'number') {
       args.push(buildKey(key), val)
     } else if (val === false) {
       args.push(buildKey(key), 'false')
