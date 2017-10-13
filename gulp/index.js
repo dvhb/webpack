@@ -3,6 +3,7 @@
 const gulpRunner = require('./gulp-runner');
 const chalk = require('chalk');
 const path = require('path');
+const _ = require('lodash');
 
 const minimist = require('minimist');
 const argv = minimist(process.argv.slice(2));
@@ -11,11 +12,10 @@ module.exports = function gulp(config, env, callback) {
 
   const gulp = new gulpRunner(path.resolve(__dirname, 'gulpfile.js'));
 
-  const opts = {
-    env: env,
-    config: argv.config? `../${argv.config}` : null,
-    'app-env': argv['app-env']
-  };
+  let opts = _.merge({}, argv);
+  delete opts._;
+
+  opts.config = opts.config? `../${opts.config}` : null;
 
   gulp.on('start', function () {
     if (config.verbose) {
