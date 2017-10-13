@@ -3,7 +3,6 @@ let EventEmitter = require('events').EventEmitter;
 let util = require('util');
 let path = require('path')
 let extend = require('extend');
-let decamelize = require('decamelize');
 let process = require('process');
 
 let DEFAULTS = {
@@ -96,7 +95,7 @@ function buildOpts(tasks, options) {
 }
 
 function buildKey(key) {
-  return '--' + decamelize(key, '-');
+  return '--' + key;
 }
 
 module.exports = GulpRunner;
