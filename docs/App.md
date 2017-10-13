@@ -75,7 +75,7 @@ Example for `src/assets/svg-sprite/hamburger.svg`:
 
 ### SVG inline
 
-Plugin [postcss-svg](https://github.com/Pavliko/postcss-svg/blob/master/README.md)
+Plugin [postcss-svg](http://pavliko.github.io/postcss-svg/#examples)
 
 Add files into `src/assets/svg-inline`
 
