@@ -13,7 +13,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "@dvhb/webpack": "1.5.4"
+    "@dvhb/webpack": "1.5.7"
   },
   "scripts": {
     "dev": "dvhb-webpack server",
