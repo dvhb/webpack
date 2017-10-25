@@ -18,7 +18,7 @@ Type: `String`, default: `dist`
 The output directory.
 
 ## `publicPath`
-Type: `String`, default: ``
+Type: `String`, default: `/`
 
 Public path for assets.
 

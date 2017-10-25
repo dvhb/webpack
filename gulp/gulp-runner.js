@@ -87,7 +87,7 @@ function buildOpts(tasks, options) {
         args.push(buildKey(key), v);
       })
     } else if (val != null && !util.isArray(val) && Object.keys(val).length) {
-      throw new Error("Can't pass complex objects to `options`.")
+      throw new Error('Can\'t pass complex objects to `options`.')
     }
   })
 

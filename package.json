@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "Webpack Starter Kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.5.9",
+  "version": "1.6.0-beta.1",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -52,6 +52,7 @@
     "git-revision-webpack-plugin": "^2.4.1",
     "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-filter": "^5.0.0",
+    "gulp-gzip": "^1.4.0",
     "gulp-pug": "^3.2.0",
     "html-webpack-plugin": "^2.29.0",
     "ip": "^1.1.5",
@@ -113,7 +114,8 @@
     "gh-pages": "gh-pages -d examples/basic/dist",
     "pregh-pages": "ASSET_PATH=\"https://dvhbru.github.io/webpack/\" npm run build",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html",
-    "gulp:templates": "node_modules/gulp/bin/gulp.js templates --gulpfile gulp/gulpfile.js --config ../examples/spa-angular/dvhb.config.js"
+    "gulp:templates": "node_modules/gulp/bin/gulp.js templates --gulpfile gulp/gulpfile.js --app-env=development --config ../examples/spa-angular/dvhb.config.js",
+    "gulp:gzip": "node_modules/gulp/bin/gulp.js gzip --gulpfile gulp/gulpfile.js --app-env=development --config ../examples/spa-angular/dvhb.config.js"
   },
   "pre-commit": "lint-staged",
   "keywords": [

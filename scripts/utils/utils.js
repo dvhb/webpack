@@ -36,6 +36,7 @@ module.exports.getNetworkIp = function () {
 };
 
 module.exports.getProjectLogo = function () {
+  /* eslint-disable */
   return [
     "     _       _     _                       _                      _    ",
     "  __| |_   _| |__ | |__      __      _____| |__  _ __   __ _  ___| | __",
@@ -45,4 +46,5 @@ module.exports.getProjectLogo = function () {
     "                                                |_|                    "
 
   ].join('\n')
+  /* eslint-enable */
 };

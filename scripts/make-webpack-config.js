@@ -81,7 +81,7 @@ module.exports = function (config, env) {
     resolve: {
       modules: [
         config.sourceDir,
-        "node_modules"
+        'node_modules'
       ],
       extensions: ['.js', '.jsx', '.json']
     },
@@ -194,12 +194,12 @@ module.exports = function (config, env) {
           {
             test: /\.modernizrrc.js$/,
             include: config.sourceDir,
-            loader: "modernizr"
+            loader: 'modernizr'
           },
           {
             test: /\.modernizrrc(\.json)?$/,
             include: config.sourceDir,
-            loader: "modernizr!json"
+            loader: 'modernizr!json'
           }
         ]
       },
@@ -264,7 +264,7 @@ module.exports = function (config, env) {
             test: /\.css$/,
             include: config.sourceDir,
             use: ExtractTextPlugin.extract({
-              fallback: "style",
+              fallback: 'style',
               use: [
                 'raw',
                 'csso',
@@ -276,7 +276,7 @@ module.exports = function (config, env) {
             test: /\.styl$/,
             include: config.sourceDir,
             use: ExtractTextPlugin.extract({
-              fallback: "style",
+              fallback: 'style',
               use: [
                 'raw',
                 'csso',

@@ -38,17 +38,9 @@ module.exports = function gulp(config, env, callback) {
     }
   });
 
-  let tasks = [
-    'default'
-  ];
-
-  if (!config.staticSite) {
-    tasks.push('templates')
-  }
-
   // equivalent of calling
   // gulp tasks --env 'production' --config 'examples/static-site/dvhb.config.js'
-  gulp.run(tasks, opts, (err) => {
+  gulp.run('default', opts, (err) => {
     // complete!
   });
 };

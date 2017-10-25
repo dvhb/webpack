@@ -13,7 +13,8 @@
     "dev": "dvhb-webpack server",
     "build": "npm run build:prod",
     "build:dev": "dvhb-webpack build --app-env=development",
-    "build:prod": "dvhb-webpack build --app-env=production"
+    "build:prod": "dvhb-webpack build --app-env=production",
+    "update": "npm i --save-dev @dvhb/webpack@latest"
   },
   "dependencies": {
     "jquery": "^1.11.0"
