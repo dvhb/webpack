@@ -6,6 +6,7 @@ module.exports = function () {
     '.gitignore',
     '.editorconfig',
     '.eslintignore',
+    '.eslintrc',
     '.babelrc',
     'LICENSE',
     'src/.modernizrrc',
