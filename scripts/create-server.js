@@ -3,7 +3,7 @@
 const express = require('express');
 const webpack = require('webpack');
 const makeWebpackConfig = require('./make-webpack-config');
-const pugStatic = require('express-pug');
+const pugStatic = require('./utils/express-pug');
 const utils = require('./utils/utils');
 const colorsSupported = require('supports-color');
 
@@ -42,6 +42,7 @@ module.exports = function createServer(config, env) {
   if (config.viewsDir) {
     app.set('view engine', 'pug');
     app.set('views', config.viewsDir);
+    app.set("view options", {layout: false});
 
     // user defined customizations
     if (config.configureServer) {
