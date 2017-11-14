@@ -167,6 +167,11 @@ module.exports = function (config, env) {
             'svgo?useConfig=svgoConfig'
           ]
         },
+        {
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          exclude: config.svgSpriteDir,
+          loader: 'url-loader?limit=100000'
+        }
       ],
     }
   };
@@ -266,7 +271,7 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: "style",
               use: [
-                'raw',
+                'css',
                 'csso',
                 'postcss'
               ]
@@ -278,7 +283,7 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: "style",
               use: [
-                'raw',
+                'css',
                 'csso',
                 'postcss',
                 'stylus'
@@ -305,7 +310,7 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw',
+              'css',
               'postcss',
               'stylus'
             ]
@@ -315,7 +320,7 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw'
+              'css'
             ]
           }
         ],
