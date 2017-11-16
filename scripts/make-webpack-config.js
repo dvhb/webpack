@@ -72,8 +72,7 @@ module.exports = function (config, env) {
   let webpackConfig = {
     output: {
       path: config.distDir,
-      filename: '[name].js',
-      publicPath: publicPath
+      filename: '[name].js'
     },
     resolveLoader: {
       moduleExtensions: ['-loader', '.loader'],
@@ -168,7 +167,7 @@ module.exports = function (config, env) {
           ]
         },
         {
-          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)$/,
           exclude: config.svgSpriteDir,
           loader: 'url-loader?limit=100000'
         }
@@ -241,6 +240,7 @@ module.exports = function (config, env) {
   if (isProd) {
     webpackConfig = merge(webpackConfig, {
       output: {
+        publicPath: publicPath,
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js'
       },
@@ -296,6 +296,9 @@ module.exports = function (config, env) {
   }
   else {
     webpackConfig = merge(webpackConfig, {
+      output: {
+        publicPath: '/'
+      },
       entry: getEntries(config, env),
       cache: true,
       devtool: 'eval',
