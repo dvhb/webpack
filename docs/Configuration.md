@@ -42,7 +42,7 @@ Type: `String`, default: `localhost`
 
 Development server host name.
 
-## `serverHost`
+## `serverPort`
 Type: `Number`, default: `3000`
 
 Dev server port.
