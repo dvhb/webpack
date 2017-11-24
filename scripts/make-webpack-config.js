@@ -10,6 +10,7 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const autoprefixer = require('autoprefixer');
 const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
@@ -246,16 +247,18 @@ module.exports = function (config, env) {
         new WebpackCleanupPlugin({
           quiet: true,
         }),
-        new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false,
-          },
-          output: {
-            comments: false,
-          },
-          mangle: false,
+        new UglifyJsPlugin({
+          parallel: true,
+          uglifyOptions: {
+            compress: {
+              warnings: false,
+            },
+            output: {
+              comments: false,
+            },
+            mangle: false,
+          }
         }),
-
         new ExtractTextPlugin('[name].[contenthash].css')
       ],
       module: {
