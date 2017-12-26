@@ -106,13 +106,6 @@ module.exports = function (config, env) {
           },
           eslint: {
             configFile: config.eslintrc
-          },
-          svgoConfig: {
-            plugins: [
-              { removeTitle: true },
-              { convertColors: { shorthex: false } },
-              { convertPathData: false }
-            ]
           }
         }
       }),
@@ -191,11 +184,19 @@ module.exports = function (config, env) {
           test: /\.svg$/,
           include: config.svgSpriteDir,
           use: [
-            'svg-sprite?' + JSON.stringify({
-              name: '[name]',
-              prefixize: false
-            }),
-            'svgo?useConfig=svgoConfig'
+            {
+              loader: 'svg-sprite-loader',
+            },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: [
+                  { removeTitle: true },
+                  { convertColors: { shorthex: false } },
+                  { convertPathData: false }
+                ]
+              }
+            }
           ]
         },
       ],
