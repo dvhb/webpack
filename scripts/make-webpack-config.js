@@ -11,8 +11,6 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const autoprefixer = require('autoprefixer');
-const postcssSVG = require('postcss-svg');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
@@ -70,6 +68,20 @@ module.exports = function (config, env) {
 
   const isProd = env === 'production';
 
+  const postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      config: {
+        path: path.resolve(__dirname, './postcss.config.js'),
+        ctx: {
+          svg: {
+            paths: config.svgInlineDir
+          }
+        }
+      }
+    }
+  };
+
   let webpackConfig = {
     output: {
       path: config.distDir,
@@ -95,18 +107,6 @@ module.exports = function (config, env) {
           eslint: {
             configFile: config.eslintrc
           },
-          postcss: [
-            autoprefixer({
-              browsers: ['last 6 versions']
-            }),
-
-            //svg inline in css
-            postcssSVG({
-              paths: [
-                config.svgInlineDir
-              ]
-            })
-          ],
           svgoConfig: {
             plugins: [
               { removeTitle: true },
@@ -313,7 +313,7 @@ module.exports = function (config, env) {
               use: [
                 'raw',
                 'csso',
-                'postcss',
+                postcssLoader,
                 'stylus'
               ]
             })
@@ -339,7 +339,7 @@ module.exports = function (config, env) {
             use: [
               'style',
               'raw',
-              'postcss',
+              postcssLoader,
               'stylus'
             ]
           },
