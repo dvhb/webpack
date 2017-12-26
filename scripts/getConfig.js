@@ -43,16 +43,16 @@ const DEFAULT_CONFIG = {
 };
 const DEPENDENCIES = [
   {
-    package: 'babel-core',
+    package: '@babel/core',
     name: 'Babel',
     from: 6,
-    to: 6,
+    to: 7,
   },
   {
     package: 'webpack',
     name: 'Webpack',
-    from: 1,
-    to: 2,
+    from: 2,
+    to: 3,
   },
 ];
 
