@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "dvhb starter kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.6.5-beta.3",
+  "version": "1.6.5-beta.4",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -73,7 +73,7 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-nested": "^3.0.0",
-    "postcss-svg": "^1.0.6",
+    "postcss-svg": "^2.4.0",
     "prettyjson": "^1.2.1",
     "pug": "^2.0.0-beta3",
     "pug-loader": "^2.3.0",

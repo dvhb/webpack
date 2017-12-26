@@ -27,7 +27,7 @@ module.exports = ({ file, options, env }) => ({
       },
     }),
     require('postcss-svg')({
-      paths: [options.svg.paths]
+      dirs: [options.svg.paths]
     })
   ],
 });
