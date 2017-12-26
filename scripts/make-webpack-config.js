@@ -145,7 +145,37 @@ module.exports = function (config, env) {
         {
           test: /\.js?$/,
           include: config.sourceDir,
-          use: ['babel', 'eslint']
+          use: [{
+            loader: 'babel-loader',
+            options: {
+              // https://github.com/babel/babel-loader#options
+              cacheDirectory: !isProd,
+
+              // https://babeljs.io/docs/usage/options/
+              babelrc: false,
+
+              presets: [
+                // A Babel preset that can automatically determine the Babel plugins and polyfills
+                // https://github.com/babel/babel-preset-env
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      browsers: [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+                      forceAllTransforms: isProd, // for UglifyJS
+                    },
+                    modules: false,
+                    useBuiltIns: false,
+                    debug: false,
+                  },
+                ],
+                // Experimental ECMAScript proposals
+                // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
+                '@babel/preset-stage-2',
+              ],
+              plugins: [],
+            },
+          }, 'eslint']
         },
         {
           test: /\.pug/,
