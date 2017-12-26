@@ -7,6 +7,7 @@ const _ = require('lodash');
 
 const minimist = require('minimist');
 const argv = minimist(process.argv.slice(2));
+const CONFIG_FILENAME = 'dvhb.config.js';
 
 module.exports = function gulp(config, env, callback) {
 
@@ -16,7 +17,7 @@ module.exports = function gulp(config, env, callback) {
   delete opts._;
 
   opts.env = env;
-  opts.config = opts.config? `../${opts.config}` : null;
+  opts.config = `${config.configDir}/${CONFIG_FILENAME}`;
 
   gulp.on('start', function () {
     if (config.verbose) {
