@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "dvhb starter kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.6.5-beta.1",
+  "version": "1.6.5-beta.2",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -78,11 +78,11 @@
     "svg-sprite-loader": "^0.3.0",
     "svgo-loader": "^1.2.1",
     "uglifyjs-webpack-plugin": "^1.1.1",
-    "webpack": "^3.4.1",
+    "webpack": "^3.8.1",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-config-loader": "^0.1.0",
-    "webpack-dev-middleware": "^1.11.0",
-    "webpack-hot-middleware": "^2.18.2",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.20.0",
     "webpack-manifest-plugin": "^1.2.1",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^4.1.0",
