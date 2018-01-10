@@ -170,7 +170,7 @@ module.exports = function (config, env) {
                 '@babel/preset-flow',
                 // JSX
                 // https://github.com/babel/babel/tree/master/packages/babel-preset-react
-                ['@babel/preset-react', { development: isDebug }],
+                ['@babel/preset-react', { development: !isProd }],
               ],
               plugins: [],
             },
