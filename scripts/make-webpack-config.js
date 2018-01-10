@@ -165,6 +165,12 @@ module.exports = function (config, env) {
                 // Experimental ECMAScript proposals
                 // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
                 '@babel/preset-stage-2',
+                // Flow
+                // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
+                '@babel/preset-flow',
+                // JSX
+                // https://github.com/babel/babel/tree/master/packages/babel-preset-react
+                ['@babel/preset-react', { development: isDebug }],
               ],
               plugins: [],
             },
