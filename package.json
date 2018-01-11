@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "dvhb starter kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.6.5-beta.10",
+  "version": "1.6.5-beta.11",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -43,6 +43,7 @@
     "@babel/preset-flow": "7.0.0-beta.32",
     "@babel/preset-react": "7.0.0-beta.32",
     "@babel/preset-stage-2": "7.0.0-beta.32",
+    "@babel/register": "^7.0.0-beta.32",
     "@dvhb/eslint-config": "*",
     "babel-eslint": "^8.0.2",
     "babel-loader": "8.0.0-beta.0",
