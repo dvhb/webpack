@@ -1,0 +1,25 @@
+.radio
+    @extend .checkbox
+
+    &__label
+        &:before
+            border-radius 50%
+
+    &__input
+
+        &:checked + .radio__label
+            &:after
+                content ''
+                width 12px
+                height 12px
+                top 4px
+                left 4px
+                background $cGreen
+                border-radius 50%
+                position absolute
+
+        &[disabled] + .radio__label
+        &._disabled + .radio__label
+            opacity .5
+            cursor: default
+

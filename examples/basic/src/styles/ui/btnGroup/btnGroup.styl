@@ -1,0 +1,34 @@
+.btnGroup
+    display inline-flex
+    border 1px solid $cGreen
+    height 40px
+    border-radius 2px
+    overflow hidden
+    box-sizing border-box
+
+    &_block
+        display flex
+
+        .btnGroup__item
+            flex 1 0 0
+
+    &__item
+        display flex
+        align-items center
+        padding 0 10px
+        cursor pointer
+        background transparent
+        justify-content center
+
+        &:hover
+            background $cGreen
+            color #fff
+
+        &._active
+           color #fff
+           background $cGreen
+           cursor default
+
+        & + &
+            border-left 1px solid $cGreen
+

@@ -1,0 +1,7 @@
+mixin checkbox(checkboxLabel, extraClass)
+    label.checkbox(class=extraClass)
+        input.checkbox__input(type="checkbox")
+        .checkbox__label
+            if !!checkboxLabel
+                .checkbox__labelText !{checkboxLabel}
+

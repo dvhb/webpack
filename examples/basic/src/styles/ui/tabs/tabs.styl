@@ -1,0 +1,32 @@
+.tabs
+    display flex
+    border-bottom 1px solid $cGrey
+
+    &__item
+        display flex
+        box-sizing border-box
+        align-items center
+        border 1px solid $cGrey
+        margin-bottom -1px
+        border-radius 4px 4px 0 0
+        height 26px
+        margin-right 2px
+        padding 0 20px 0 15px
+        cursor pointer
+        background #EAEFF1
+        border 1px solid #EAEFF1
+        border-bottom-color $cGrey
+
+        &:hover
+            background darken(#EAEFF1, +5%)
+            border 1px solid darken(#EAEFF1, +5%)
+            border-bottom-color $cGrey
+
+        &._active
+            cursor default
+            background #fff
+            border 1px solid $cGrey
+            border-bottom-color #fff
+
+    &__right
+        margin-left auto

@@ -1,0 +1,103 @@
+// *
+//     max-height 999999px //android font-size fix
+//     -webkit-font-smoothing: antialiased;
+
+html
+body
+    margin 0
+    padding 0
+    width 100%
+    height 100%
+
+body
+    font 14px/20px $font;
+    color $cBlack
+    position relative
+    -webkit-text-size-adjust 100% // ios font-size fix
+    -webkit-font-smoothing: antialiased;
+
+// IE fix
+a img
+    border none
+
+img
+    max-width 100%
+    max-height 100%
+    display block
+
+a
+    text-decoration none
+    color $cGreen
+    transition color .4s ease-in-out
+
+    &:hover
+        color darken($cGreen, +20%)
+        text-decoration none
+
+h1
+    font-size 20px
+    line-height 24px
+    margin 0
+    padding 0
+
+h2
+    font-size 16px
+    line-height 20px
+    margin 0
+    padding 0
+
+h3
+    font-size 14px
+    line-height 20px
+    margin 0
+    padding 0
+
+p
+    margin 0
+    margin-bottom 10px
+
+b
+strong
+    font-weight 700
+
+
+
+.textRed
+    color $cRed
+
+.textGreen
+    color $cGreen
+
+.textGrey
+    color $cGrey
+
+
+
+.visible-xs
+.visible-sm
+    display none
+
+
+
+.textCenter
+    text-align center
+
+
+
+@media $xs
+    .hidden-xs
+        display none
+
+    .visible-xs
+        display block
+
+
+@media $sm
+    .hidden-sm
+        display none
+
+    .visible-sm
+        display block
+
+
+

@@ -1,0 +1,86 @@
+.dropdown
+    position relative
+    max-width 140px
+    cursor pointer
+    color $cGreenDark
+    font-weight 500
+    font-size 11px
+
+    &._expanded
+        box-shadow 0 0 0 1px rgba($cGreen, .25) inset, 0 5px 10px 0 rgba(12,12,66,0.20)
+        z-index 2
+
+        & ^[0]__button
+            &:after
+                transform translateY(-50%) rotate(180deg)
+
+    &._disabled
+        opacity .5
+        cursor default
+
+    &__button
+        align-items center
+        border-radius 2px
+        box-sizing border-box
+        display flex
+        font-family $font
+        height 40px
+        max-width 100%
+        padding 0 20px
+        align-items center
+        text-transform uppercase
+        text-align left
+        padding-right 30px
+        position relative
+        border 1px solid $cGreen
+        background #FFF
+        z-index 1
+        box-shadow 0 0 0 1px rgba($cGreen, .25) inset
+
+        &:after
+            {$transition}
+            content ''
+            position absolute
+            right 12px
+            top 50%
+            transform translateY(-50%)
+            // background url('select_arrowDown_green') no-repeat scroll center center
+            width 16px
+            height 16px
+            transition-property transform
+            transition-duration .2s
+
+
+    &__buttonText
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+
+    &__list
+        background #FFF
+        border 1px solid #C6C9CE
+        position absolute
+        top 100%
+        left 0
+        width 100%
+        padding 7px 0 5px
+        border-top none
+        border-radius 0 0 2px 2px
+        margin-top -1px
+        box-sizing border-box
+        box-shadow 0 5px 10px 0 rgba(12,12,66,0.20)
+
+        ^[0]._up &
+            top auto
+            bottom 100%
+            margin-top auto
+            margin-bottom -1px
+            padding 5px 0 7px
+            border-radius 2px 2px 0 0
+            border-top 1px solid #C6C9CE
+            border-bottom none
+
+    &__listItem
+        padding 8px 20px
+        text-transform uppercase
+        display block

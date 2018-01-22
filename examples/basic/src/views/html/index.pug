@@ -3,15 +3,23 @@ html
         meta(charset='utf-8')
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         title Markup
-        link(rel='stylesheet', href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/lumen/bootstrap.min.css")
+
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+        link(rel='stylesheet', href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
 
     body
-        .container
+        .container.py-5
 
-            .page-header
+            .pb-4
                 h1 All markup templates
 
-            .list-group
+            .list-group.mb-5
+                .list-group-item.list-group-item-info Pages
+                a.list-group-item.list-group-item-action(href="/html/pages/examplePage/examplePage.html", target="_blank") examplePage
 
-                a.list-group-item(href="/html/pages/examplePage/examplePage.html", target="_blank")
-                    h4 examplePage
+            .list-group.mb-5
+                .list-group-item.list-group-item-success Helpers
+                a.list-group-item.list-group-item-action(href="/html/styleguide/index.html", target="_blank") Styleguide
+                a.list-group-item.list-group-item-action(href="/html/svgIcons/index.html", target="_blank") Svg Icons

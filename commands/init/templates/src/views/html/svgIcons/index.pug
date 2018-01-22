@@ -1,0 +1,93 @@
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        title Svg Icons
+        base(href="/")
+        link(rel='stylesheet', href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+
+        script(src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js")
+        script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js")
+
+        include ../../_partials/scripts
+
+        style.
+            .svgIcon {
+                display: inline-block;
+                width: 1em;
+                height: 1em;
+                fill: #007ed2;
+            }
+
+            .thumbnail__img {
+                font-size: 40px;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .col-sm-4 {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .thumbnail {
+                flex: 1 1 auto;
+            }
+
+            .thumbnail pre {
+                cursor: pointer;
+            }
+
+            pre {
+                margin: 0;
+            }
+
+    body(style="background:#fff !important;")
+
+        br
+        br
+        br
+
+        .container
+            .row
+
+
+        script.
+
+            $(function () {
+
+                $(window).load(function () {
+
+                    var $symbol = $('svg symbol');
+                    var $container = $('.container .row');
+                    var $html = '';
+
+                    $.each($symbol, function (i) {
+
+                        $html += '<div class="col-sm-6 col-md-4 col-xs-12"><div class="thumbnail"><div class="thumbnail__img"><svg class="svgIcon"><use xlink:href="#' + $(this).attr('id') + '"></div> <pre data-toggle="tooltip" data-placement="top" title="Copy">+icon("' + $(this).attr('id') + '")</pre></div></div>';
+
+                    })
+
+                    $container.html($html);
+
+                    // copy to clipboard
+                    var $copyText = $('.thumbnail pre');
+
+                    new Clipboard('.thumbnail pre', {
+                        target: function (trigger) {
+                            return trigger;
+                        }
+                    });
+
+                    //tooltip
+                    $('[data-toggle="tooltip"]').tooltip();
+                })
+            })

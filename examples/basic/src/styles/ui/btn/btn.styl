@@ -1,0 +1,69 @@
+.btn
+    align-items center
+    background $cGreen
+    border none
+    border-radius 2px
+    box-sizing border-box
+    color $cWhite
+    cursor pointer
+    display inline-flex
+    font-family $font
+    font-size 11px
+    font-weight 500
+    height 40px
+    justify-content center
+    max-width 100%
+    min-width 140px
+    overflow hidden
+    padding 0 12px
+    text-align center
+    text-overflow ellipsis
+    text-transform uppercase
+    transition-duration .4s
+    transition-property box-shadow, color, background, border-color
+    transition-timing-function ease-in-out
+    vertical-align middle
+    white-space nowrap
+
+    &:hover
+        background #95d948
+        border-color #95d948
+        box-shadow 0 3px 5px 0 rgba($cGreen, .5)
+        color #fff
+        text-decoration none
+
+    &_block
+        display flex
+        min-width 0
+        padding 0 10px
+        width 100%
+
+    &_red
+        background $cRed
+        border-color $cRed
+
+    &_transparent
+        background transparent
+        border 1px solid currentColor
+        box-shadow 0 0 0 1px rgba($cGreen, .25) inset
+        color $cGreen
+
+    &_transparentRed
+        background transparent
+        border 1px solid currentColor;
+        box-shadow 0 0 0 1px rgba($cRed, .25) inset
+        color $cRed
+
+        &:hover
+            background $cRed
+            border-color $cRed
+            box-shadow 0 3px 5px 0 rgba($cRed, .5)
+            color #fff
+
+    &._disabled,
+    &[disabled]
+        cursor default
+        opacity .5
+        pointer-events none
+
+
