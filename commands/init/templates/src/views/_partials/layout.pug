@@ -8,9 +8,7 @@ html
         include styles
         block extra_styles
 
-    body
-        //include header
-
+    body&attributes(bodyAttributes)
         block content
 
         include scripts

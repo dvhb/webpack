@@ -7,7 +7,7 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "@dvhb/webpack": "1.6.3"
+    "@dvhb/webpack": "1.6.5"
   },
   "scripts": {
     "dev": "dvhb-webpack server",
@@ -17,6 +17,6 @@
     "update": "npm i --save-dev @dvhb/webpack@latest"
   },
   "dependencies": {
-    "jquery": "^1.11.0"
+    "jquery": "^3.3.1"
   }
 }

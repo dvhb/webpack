@@ -20,5 +20,8 @@
     "build": "npm run build:prod",
     "build:dev": "dvhb-webpack build --app-env=development",
     "build:prod": "dvhb-webpack build --app-env=production"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }
