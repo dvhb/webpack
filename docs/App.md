@@ -83,7 +83,7 @@ Example for `src/assets/svg-inline/logo.svg`:
 
 ```css
 .logo {
-  background-image: svg('logo');
+  background-image: url('logo');
 }
 ```
 
