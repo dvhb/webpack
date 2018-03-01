@@ -1,0 +1,29 @@
+.tooltip
+    {$transition}
+    transition-property opacity
+    background #fff
+    border-radius 3px
+    color $cBlack
+    padding 6px 12px
+    font-size 12px
+    position absolute
+    opacity 0
+    visibility hidden
+    filter drop-shadow(0 2px 5px rgba(0,0,0,0.20))
+
+    // &:before
+    &:after
+        content ""
+        position absolute
+        top 100%
+        left 50%
+        content ''
+        width 12px
+        height 12px
+        transform translate(-50%, -50%) rotate(45deg)
+        background #FFF
+
+
+    &._show
+        opacity 1
+        visibility visible

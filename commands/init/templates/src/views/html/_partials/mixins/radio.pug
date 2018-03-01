@@ -1,0 +1,8 @@
+mixin radio(radioLabel, radioName, checked)
+    - var radioName = radioName || 'r0'
+    label.radio
+        input.radio__input(type="radio", name=radioName, checked= checked)&attributes(attributes)
+        .radio__label 
+            .radio__labelText #{radioLabel}
+
+

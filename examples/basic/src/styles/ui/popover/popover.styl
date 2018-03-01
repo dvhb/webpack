@@ -1,0 +1,36 @@
+.popover
+    position absolute
+    background #fff
+    border-radius 8px
+    filter drop-shadow(0 8px 15px rgba(#000, .5))
+    max-width 300px
+    color $cBlack
+
+    &:before
+        content ''
+        width 18px
+        height 18px
+        position absolute
+        top 50%
+        left -7px
+        transform translateY(-50%) rotate(45deg)
+        background #fff
+
+    &__close
+        display flex
+        width 24px
+        height 24px
+        align-items center
+        justify-content center
+        font-size 8px
+        opacity .5
+        top 0
+        right 0
+        position absolute
+        z-index 1
+        cursor pointer
+
+    &__content
+        padding 20px 25px
+
+

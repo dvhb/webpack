@@ -1,0 +1,6 @@
+mixin icon(svgName, extraClass)
+    - var extraClass = extraClass || ''
+    svg.icon(class=extraClass)
+        use(xlink:href="#" + svgName)
+
+

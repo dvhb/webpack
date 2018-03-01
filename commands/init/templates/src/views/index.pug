@@ -10,7 +10,10 @@ block extra_scripts
         hljs.initHighlightingOnLoad();
 
 block vars
-    - var title = 'Index'
+    - var title = '@dvhb/webpack project'
+    - var bodyAttributes = {};
+    - bodyAttributes.class = '_mod';
+    - bodyAttributes['data-hello'] = 'hello';
 
 block content
 
@@ -49,8 +52,7 @@ block content
         .section
             include:markdown-it ../../node_modules/@dvhb/webpack/docs/Configuration.md
 
-
-    .b-content.b-content
+    .b-usage.b-content
         .section
 
             h2 License

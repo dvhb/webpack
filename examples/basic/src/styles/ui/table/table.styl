@@ -1,0 +1,103 @@
+.table
+    width 100%
+    border-collapse collapse
+
+    th
+    td
+        padding 3px 5px
+        position relative
+        background-clip padding-box
+        vertical-align middle
+        line-height 20px
+
+        &.table
+            &__colIcon
+                width 20px
+                padding-left 0
+                padding-right 0
+                max-width 20px
+
+    th
+        font-weight normal
+        text-align left
+        border-bottom 1px solid #B6C5C8
+        background #fff
+        color $cGrey
+
+    td
+        border-bottom 1px solid #D5E0ED
+
+    tr
+        &._active
+            background rgba(#34438E, .2)
+
+        &._activeGrey
+            background rgba(#B6C5C8, .3)
+
+        &._active th
+        &._activeGrey th
+            background transparent
+
+        &._topBorder
+            td
+                border-top 1px solid #B6C5C8
+
+        &._marked
+            background #fefde0
+
+    &_hover
+        tr
+            &:hover
+                background rgba(#B6C5C8, .3)
+
+    &_top
+        td
+        tr
+            vertical-align top
+
+    &__overflowText
+        max-width calc(100% - 10px)
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+        position absolute
+        top 3px
+        left 5px
+
+    &__hiddenCell
+        visibility hidden
+
+        &._active
+        tr:hover &
+            visibility visible
+
+
+    &__linkTransparent
+        display flex
+        align-items center
+        color $cBlack
+        opacity .5
+
+        &:hover
+        &._active
+            opacity 1
+
+    &__checkbox
+        display: inline
+
+// .table-sort
+//     cursor pointer
+//     display flex
+//     align-items center
+//     color $cGrey
+
+//     &__icon
+//         visibility hidden
+
+//         &:hover
+//         &._active
+//             color $cBlue
+
+//     &:hover &__icon
+//     &._active &__icon
+//         visibility visible

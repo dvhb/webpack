@@ -1,0 +1,92 @@
+.checkbox
+    display inline-block
+    position relative
+    max-width 100%
+
+    &__input
+        opacity 0
+        position absolute
+        top 0
+        left 0
+
+        &:checked + .checkbox__label
+            &:after
+                content ''
+                width 12px
+                height 12px
+                top 4px
+                left 4px
+                background $cGreen
+                border-radius 2
+                position absolute
+
+        &[disabled] + .checkbox__label
+        &._disabled + .checkbox__label
+            opacity .5
+            cursor: default
+
+    &__label
+        position relative
+        cursor pointer
+        display flex
+
+        &:before
+            content ''
+            width 20px
+            height 20px
+            border-radius 2px
+            box-sizing border-box
+            border 1px solid rgba(#C6C9CE, 1)
+            flex none
+            background #F7F9FC
+
+    &__labelText
+        margin-left 8px
+        font-size 11px
+        text-transform uppercase
+        font-weight 500
+        padding-top 3px
+        align-self flex-start
+        line-height normal
+
+
+    &_slider
+        & ^[0]
+            &__label
+                &:before
+                    width 28px
+                    margin 7px 0
+                    height 6px
+                    border-radius 3px
+                    background rgba(#000, .1)
+                    border none
+
+                &:after
+                    {$transition}
+                    content ''
+                    left 0
+                    top 50%
+                    transform translate(0, -50%)
+                    background #A8B1BF
+                    width 16px
+                    height 16px
+                    border-radius 50%
+                    position absolute
+                    box-shadow 0 3px 5px 0 rgba(12,12,66,0.20)
+                    transition-property background, transform
+                    transition-duration .15s
+
+            &__input
+                &:checked + .checkbox__label
+                    &:before
+                        background rgba(#000, .1)
+                        border none
+
+                    &:after
+                        background $cGreen
+                        transform translate(12px, -50%)
+                        width 16px
+                        height 16px
+                        top 50%
+
+

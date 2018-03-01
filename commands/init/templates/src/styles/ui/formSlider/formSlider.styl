@@ -1,0 +1,44 @@
+.formSlider
+    padding-top 12px
+    padding-bottom 24px
+    position relative
+
+    &__line
+        width 100%
+        height 6px
+        border-radius 3px
+        background rgba(#000, .1)
+        position relative
+
+    &__pin
+        height 100%
+        width 0
+        position absolute
+
+        &:after
+            content ''
+            position absolute
+            left 50%
+            top 50%
+            transform translate(-50%, -50%)
+            background #A8B1BF
+            box-shadow 0 3px 5px 0 rgba(12,12,66,0.20)
+            width 16px
+            height 16px
+            cursor pointer
+            border-radius 50%
+
+
+    &__label
+        width 0
+        text-align center
+        bottom 0
+        position absolute
+        display flex
+        justify-content center
+
+        &_first
+            justify-content flex-start
+
+        &_last
+            justify-content flex-end
