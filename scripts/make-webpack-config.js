@@ -85,8 +85,7 @@ module.exports = function (config, env) {
   let webpackConfig = {
     output: {
       path: config.distDir,
-      filename: '[name].js',
-      publicPath: publicPath
+      filename: '[name].js'
     },
     resolveLoader: {
       moduleExtensions: ['-loader', '.loader'],
@@ -205,6 +204,11 @@ module.exports = function (config, env) {
             }
           ]
         },
+        {
+          test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)$/,
+          exclude: config.svgSpriteDir,
+          loader: 'url-loader?limit=100000'
+        }
       ],
     }
   };
@@ -306,7 +310,7 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: 'style',
               use: [
-                'raw',
+                'css',
                 'csso',
                 'postcss'
               ]
@@ -318,7 +322,7 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: 'style',
               use: [
-                'raw',
+                'css',
                 'csso',
                 postcssLoader,
                 'stylus'
@@ -331,6 +335,9 @@ module.exports = function (config, env) {
   }
   else {
     webpackConfig = merge(webpackConfig, {
+      output: {
+        publicPath: '/'
+      },
       entry: getEntries(config, env),
       cache: true,
       devtool: 'eval',
@@ -345,7 +352,7 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw',
+              'css',
               postcssLoader,
               'stylus'
             ]
@@ -355,7 +362,7 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw'
+              'css'
             ]
           }
         ],
