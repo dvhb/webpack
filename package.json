@@ -2,7 +2,7 @@
   "name": "@dvhb/webpack",
   "description": "dvhb starter kit for project",
   "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.6.5-beta.16",
+  "version": "1.6.5-beta.17",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
@@ -96,6 +96,7 @@
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-config-loader": "^0.1.0",
     "webpack-dev-middleware": "^1.12.0",

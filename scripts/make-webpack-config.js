@@ -10,7 +10,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
@@ -303,7 +304,13 @@ module.exports = function (config, env) {
             mangle: false,
           }
         }),
-        new ExtractTextPlugin('[name].[contenthash].css')
+        new ExtractTextPlugin('[name].[contenthash].css'),
+        new BundleAnalyzerPlugin({
+          analyzerMode: (config.appEnv === 'development') ? 'static' : 'disable',
+          openAnalyzer: false,
+          reportFilename: 'report.html',
+          logLevel: 'error'
+        }),
       ],
       module: {
         rules: [
@@ -346,7 +353,12 @@ module.exports = function (config, env) {
       devtool: 'eval',
       plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          openAnalyzer: false,
+          logLevel: 'info'
+        }),
       ],
       module: {
         rules: [
