@@ -33,6 +33,7 @@ const DEFAULT_CONFIG = {
   verbose: false,
   extendWebpackConfig: null,
   eslintrc: '.eslintrc',
+  babelrc: undefined,
   modernizrrc: 'src/.modernizrrc',
   templateVars: {},
   gzip: {
@@ -118,6 +119,11 @@ function getConfig(options) {
     config.eslintrc = path.resolve(configDir, config.eslintrc)
   } else {
     config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
+  }
+
+  let babelrcPath = path.resolve(configDir, '.babelrc');
+  if (fs.existsSync(babelrcPath)) {
+    config.babelrc = babelrcPath
   }
 
   if (config.verbose) {

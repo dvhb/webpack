@@ -145,6 +145,7 @@ module.exports = function (config, env) {
 
               // https://babeljs.io/docs/usage/options/
               babelrc: false,
+              extends: config.babelrc,
 
               presets: [
                 // A Babel preset that can automatically determine the Babel plugins and polyfills
@@ -171,7 +172,9 @@ module.exports = function (config, env) {
                 // https://github.com/babel/babel/tree/master/packages/babel-preset-react
                 ['@babel/preset-react', { development: !isProd }],
               ],
-              plugins: [],
+              plugins: [
+                "lodash",
+              ],
             },
           }, 'eslint']
         },

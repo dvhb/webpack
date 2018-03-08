@@ -7,6 +7,7 @@ module.exports = function () {
     '.editorconfig',
     '.eslintignore',
     '.eslintrc',
+    '.babelrc',
     'LICENSE',
     'src/.modernizrrc',
   ];
