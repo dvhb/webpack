@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-const pkg = require('../package.json');
+const pkg = require('./package.json');
 
 module.exports = ({ file, options, env }) => ({
   // The list of plugins for PostCSS

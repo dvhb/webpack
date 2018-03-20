@@ -35,6 +35,7 @@ const DEFAULT_CONFIG = {
   eslintrc: '.eslintrc',
   babelrc: undefined,
   modernizrrc: 'src/.modernizrrc',
+  postcssrc: '.postcssrc.js',
   templateVars: {},
   gzip: {
     src: '**/*.{html,xml,json,css,js,js.map,css.map}',
@@ -119,6 +120,12 @@ function getConfig(options) {
     config.eslintrc = path.resolve(configDir, config.eslintrc)
   } else {
     config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
+  }
+
+  if (fs.existsSync(path.resolve(configDir, config.postcssrc))) {
+    config.postcssrc = path.resolve(configDir, config.postcssrc)
+  } else {
+    config.postcssrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.postcssrc)
   }
 
   let babelrcPath = path.resolve(configDir, '.babelrc');

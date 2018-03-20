@@ -73,7 +73,7 @@ module.exports = function (config, env) {
     loader: 'postcss-loader',
     options: {
       config: {
-        path: path.resolve(__dirname, './postcss.config.js'),
+        path: config.postcssrc,
         ctx: {
           svg: {
             paths: config.svgInlineDir
@@ -322,7 +322,7 @@ module.exports = function (config, env) {
               use: [
                 'css',
                 'csso',
-                'postcss'
+                postcssLoader,
               ]
             })
           },
@@ -377,7 +377,8 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'css'
+              'css',
+              postcssLoader,
             ]
           }
         ],
