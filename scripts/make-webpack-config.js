@@ -10,9 +10,8 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const autoprefixer = require('autoprefixer');
-const postcssSVG = require('postcss-svg');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const merge = require('webpack-merge');
 const utils = require('./utils/utils');
 const prettyjson = require('prettyjson');
@@ -70,11 +69,24 @@ module.exports = function (config, env) {
 
   const isProd = env === 'production';
 
+  const postcssLoader = {
+    loader: 'postcss-loader',
+    options: {
+      config: {
+        path: config.postcssrc,
+        ctx: {
+          svg: {
+            paths: config.svgInlineDir
+          }
+        }
+      }
+    }
+  };
+
   let webpackConfig = {
     output: {
       path: config.distDir,
-      filename: '[name].js',
-      publicPath: publicPath
+      filename: '[name].js'
     },
     resolveLoader: {
       moduleExtensions: ['-loader', '.loader'],
@@ -94,25 +106,6 @@ module.exports = function (config, env) {
           },
           eslint: {
             configFile: config.eslintrc
-          },
-          postcss: [
-            autoprefixer({
-              browsers: ['last 6 versions']
-            }),
-
-            //svg inline in css
-            postcssSVG({
-              paths: [
-                config.svgInlineDir
-              ]
-            })
-          ],
-          svgoConfig: {
-            plugins: [
-              { removeTitle: true },
-              { convertColors: { shorthex: false } },
-              { convertPathData: false }
-            ]
           }
         }
       }),
@@ -145,7 +138,46 @@ module.exports = function (config, env) {
         {
           test: /\.js?$/,
           include: config.sourceDir,
-          use: ['babel', 'eslint']
+          use: [{
+            loader: 'babel-loader',
+            options: {
+              // https://github.com/babel/babel-loader#options
+              cacheDirectory: !isProd,
+
+              // https://babeljs.io/docs/usage/options/
+              babelrc: false,
+              extends: config.babelrc,
+
+              presets: [
+                // A Babel preset that can automatically determine the Babel plugins and polyfills
+                // https://github.com/babel/babel-preset-env
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: {
+                      browsers: [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+                      forceAllTransforms: isProd, // for UglifyJS
+                    },
+                    modules: false,
+                    useBuiltIns: false,
+                    debug: false,
+                  },
+                ],
+                // Experimental ECMAScript proposals
+                // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
+                '@babel/preset-stage-2',
+                // Flow
+                // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
+                '@babel/preset-flow',
+                // JSX
+                // https://github.com/babel/babel/tree/master/packages/babel-preset-react
+                ['@babel/preset-react', { development: !isProd }],
+              ],
+              plugins: [
+                "lodash",
+              ],
+            },
+          }, 'eslint']
         },
         {
           test: /\.pug/,
@@ -161,13 +193,26 @@ module.exports = function (config, env) {
           test: /\.svg$/,
           include: config.svgSpriteDir,
           use: [
-            'svg-sprite?' + JSON.stringify({
-              name: '[name]',
-              prefixize: false
-            }),
-            'svgo?useConfig=svgoConfig'
+            {
+              loader: 'svg-sprite-loader',
+            },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: [
+                  { removeTitle: true },
+                  { convertColors: { shorthex: false } },
+                  { convertPathData: false }
+                ]
+              }
+            }
           ]
         },
+        {
+          test: /\.(jpe?g|png|woff|woff2|eot|ttf)$/,
+          exclude: config.svgSpriteDir,
+          loader: 'url-loader?limit=100000'
+        }
       ],
     }
   };
@@ -259,7 +304,13 @@ module.exports = function (config, env) {
             mangle: false,
           }
         }),
-        new ExtractTextPlugin('[name].[contenthash].css')
+        new ExtractTextPlugin('[name].[contenthash].css'),
+        new BundleAnalyzerPlugin({
+          analyzerMode: (config.appEnv === 'development') ? 'static' : 'disable',
+          openAnalyzer: false,
+          reportFilename: 'report.html',
+          logLevel: 'error'
+        }),
       ],
       module: {
         rules: [
@@ -269,9 +320,9 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: 'style',
               use: [
-                'raw',
+                'css',
                 'csso',
-                'postcss'
+                postcssLoader,
               ]
             })
           },
@@ -281,9 +332,9 @@ module.exports = function (config, env) {
             use: ExtractTextPlugin.extract({
               fallback: 'style',
               use: [
-                'raw',
+                'css',
                 'csso',
-                'postcss',
+                postcssLoader,
                 'stylus'
               ]
             })
@@ -294,12 +345,20 @@ module.exports = function (config, env) {
   }
   else {
     webpackConfig = merge(webpackConfig, {
+      output: {
+        publicPath: '/'
+      },
       entry: getEntries(config, env),
       cache: true,
       devtool: 'eval',
       plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          openAnalyzer: false,
+          logLevel: 'info'
+        }),
       ],
       module: {
         rules: [
@@ -308,8 +367,8 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw',
-              'postcss',
+              'css',
+              postcssLoader,
               'stylus'
             ]
           },
@@ -318,7 +377,8 @@ module.exports = function (config, env) {
             include: config.sourceDir,
             use: [
               'style',
-              'raw'
+              'css',
+              postcssLoader,
             ]
           }
         ],

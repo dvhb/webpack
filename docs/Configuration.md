@@ -99,7 +99,7 @@ module.exports = {
    * Extend webpack configuration
    *
    * @param webpackConfig {Object} – webpack config
-   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   * @param env {String} – environment
    */
   extendWebpackConfig(webpackConfig, env) {
     const dir = path.resolve(__dirname, 'src');
@@ -140,7 +140,7 @@ module.exports = {
    * Extend express server behavior
    *
    * @param app – instance of the express server running dvhb-webpack
-   * @param env {String} – environment, example dvhb-webpack build --app-env=development
+   * @param env {String} – environment
    */
   configureServer(app, env) {
     app.get('/custom-endpoint', (req, res) => {

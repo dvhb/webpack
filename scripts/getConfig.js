@@ -33,7 +33,9 @@ const DEFAULT_CONFIG = {
   verbose: false,
   extendWebpackConfig: null,
   eslintrc: '.eslintrc',
+  babelrc: undefined,
   modernizrrc: 'src/.modernizrrc',
+  postcssrc: '.postcssrc.js',
   templateVars: {},
   gzip: {
     src: '**/*.{html,xml,json,css,js,js.map,css.map}',
@@ -43,16 +45,16 @@ const DEFAULT_CONFIG = {
 };
 const DEPENDENCIES = [
   {
-    package: 'babel-core',
+    package: '@babel/core',
     name: 'Babel',
     from: 6,
-    to: 6,
+    to: 7,
   },
   {
     package: 'webpack',
     name: 'Webpack',
-    from: 1,
-    to: 2,
+    from: 2,
+    to: 3,
   },
 ];
 
@@ -118,6 +120,17 @@ function getConfig(options) {
     config.eslintrc = path.resolve(configDir, config.eslintrc)
   } else {
     config.eslintrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.eslintrc)
+  }
+
+  if (fs.existsSync(path.resolve(configDir, config.postcssrc))) {
+    config.postcssrc = path.resolve(configDir, config.postcssrc)
+  } else {
+    config.postcssrc = path.resolve(__dirname, '..', DEFAULT_CONFIG.postcssrc)
+  }
+
+  let babelrcPath = path.resolve(configDir, '.babelrc');
+  if (fs.existsSync(babelrcPath)) {
+    config.babelrc = babelrcPath
   }
 
   if (config.verbose) {

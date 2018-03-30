@@ -1,4 +1,4 @@
 {
-	"root": true,
-    "parser": "babel-eslint"
+  "root": true,
+  "parser": "babel-eslint"
 }

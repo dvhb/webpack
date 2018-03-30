@@ -27,12 +27,6 @@ module.exports = function () {
         store: true
       },
       {
-        name: 'author',
-        message: 'Who is the author of this app',
-        default: 'hello@dvhb.ru',
-        store: true
-      },
-      {
         name: 'description',
         message: 'Description',
         default: 'This is awesome dvhb project!',

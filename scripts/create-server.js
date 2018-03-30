@@ -42,7 +42,7 @@ module.exports = function createServer(config, env) {
   if (config.viewsDir) {
     app.set('view engine', 'pug');
     app.set('views', config.viewsDir);
-    app.set("view options", {layout: false});
+    app.set("view options", { layout: false });
 
     // user defined customizations
     if (config.configureServer) {
@@ -63,6 +63,7 @@ module.exports = function createServer(config, env) {
 
     //template global variables
     app.locals.templateVars = config.templateVars;
+    app.locals.publicPath = (env === 'production')? config.publicPath : '/';
 
     if (config.spa) {
       //spa entry for all routes

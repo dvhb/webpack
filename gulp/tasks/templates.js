@@ -34,6 +34,7 @@ function getTemplateLocals(config) {
   const manifestDir = config.distDir + '/manifest.json';
 
   let locals = {
+    publicPath: config.publicPath,
     templateVars: config.templateVars,
     env: config.env,
   };
