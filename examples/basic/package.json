@@ -2,11 +2,11 @@
   "name": "webpack-starter-kit-basic-example",
   "description": "Webpack Starter kit basic example",
   "version": "1.0.0",
-  "homepage": "https://github.com/dvhbru/webpack.git",
+  "homepage": "https://github.com/dvhb/webpack.git",
   "author": "team@dvhb.ru",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dvhbru/webpack.git"
+    "url": "git://github.com/dvhb/webpack.git"
   },
   "license": "MIT",
   "engines": {

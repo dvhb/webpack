@@ -50,7 +50,7 @@ Dev server port.
 ## `eslintrc`
 Type: `String`, default: `.eslintrc`
 
-Use ESLint config [https://github.com/dvhbru/eslint-config](@dvhb/eslint-config).
+Use ESLint config [https://github.com/dvhb/eslint-config](@dvhb/eslint-config).
 
 You can use your own eslint config if exists `<project_dir>/.eslintrc`
 

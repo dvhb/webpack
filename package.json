@@ -1,18 +1,18 @@
 {
   "name": "@dvhb/webpack",
   "description": "dvhb starter kit for project",
-  "homepage": "https://github.com/dvhbru/webpack.git",
-  "version": "1.6.5-beta.19",
+  "homepage": "https://github.com/dvhb/webpack.git",
+  "version": "1.6.6",
   "author": {
     "name": "Aleksey Subbotenko",
     "url": "https://dvhb.ru/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dvhbru/webpack.git"
+    "url": "https://github.com/dvhb/webpack.git"
   },
   "bugs": {
-    "url": "https://github.com/dvhbru/webpack/issues"
+    "url": "https://github.com/dvhb/webpack/issues"
   },
   "license": "MIT",
   "main": "scripts/index.js",
@@ -131,7 +131,7 @@
     "build:static-site": "bin/webpack.js build --config examples/static-site/dvhb.config.js --verbose --app-env=development",
     "build:spa-angular": "bin/webpack.js build --config examples/spa-angular/dvhb.config.js --verbose --app-env=development",
     "gh-pages": "gh-pages -d examples/basic/dist",
-    "pregh-pages": "ASSET_PATH=\"https://dvhbru.github.io/webpack/\" npm run build",
+    "pregh-pages": "ASSET_PATH=\"https://dvhb.github.io/webpack/\" npm run build",
     "phantomjs": "phantomjs test/phantom.js examples/basic/dist/index.html",
     "gulp:templates": "node_modules/gulp/bin/gulp.js templates --gulpfile gulp/gulpfile.js --app-env=development --config ../examples/spa-angular/dvhb.config.js",
     "gulp:gzip": "node_modules/gulp/bin/gulp.js gzip --gulpfile gulp/gulpfile.js --app-env=development --config ../examples/spa-angular/dvhb.config.js"

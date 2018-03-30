@@ -23,7 +23,7 @@ Add scripts to package.json
 }
 ```
 
-See basic starter project for more details [examples/basic](https://github.com/dvhbru/webpack/tree/master/examples/basic).
+See basic starter project for more details [examples/basic](https://github.com/dvhb/webpack/tree/master/examples/basic).
 
 ## Workflow
 
