@@ -209,7 +209,7 @@ module.exports = function (config, env) {
           ]
         },
         {
-          test: /\.(jpe?g|png|woff|woff2|eot|ttf)$/,
+          test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)$/,
           exclude: config.svgSpriteDir,
           loader: 'url-loader?limit=100000'
         }
