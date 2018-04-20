@@ -153,7 +153,7 @@ function findConfig(file) {
   if (file) {
     // Custom config location
 
-    const configFilepath = file[0] === '/'? file : path.join(process.cwd(), file);
+    const configFilepath = (file[0] === '/' || file.match(/^[A-Z]:/))? file : path.join(process.cwd(), file);
     if (!fs.existsSync(configFilepath)) {
       throw new DvhbWebpackError('DvhbWebpack config not found: ' + configFilepath + '.');
     }
